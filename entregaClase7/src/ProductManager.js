@@ -1,4 +1,5 @@
-import fs from 'fs';
+const fs = require('fs')
+const productosFileName = "productos.json"
 
 class ProductManager {
     constructor(path) {
@@ -6,18 +7,21 @@ class ProductManager {
     }
 
     getProducts = async() => {
-        if (fs.existsSync(`${this.path}`)) {
-            const objects = await JSON.parse(fs.readFileSync(`${this.path}`, "utf-8"));
+        let productFile = (`${this.path}productos.json`)
+        console.log(process.cwd())
+        if (fs.existsSync(productFile)) {
+            const objects = await JSON.parse(fs.readFileSync(productFile, "utf-8"));
             return objects;
-
         } else { 
-            console.log("No se encontró el archivo");
+            console.log("No se encontró el archivo:", productFile);
+            return [];
         }
     }
 
     getProductById = async(id) => { 
-        if (fs.existsSync(`${this.path}`)) {
-            const objects = await JSON.parse(fs.readFileSync(`${this.path}`));
+        let productFile = (`${this.path}${productosFileName}`)
+        if (fs.existsSync(productFile)) {
+            const objects = await JSON.parse(fs.readFileSync(productFile));
             
             let idToSearch = (element) => element.id === id;
             let position = await objects.findIndex(idToSearch);
@@ -32,4 +36,5 @@ class ProductManager {
     }
 }
 
-export default ProductManager;
+
+module.exports = ProductManager
