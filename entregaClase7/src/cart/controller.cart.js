@@ -41,7 +41,7 @@ router.get("/:cid", async (req, res) => {
 router.post('/', async (req, res) => {
   let response = await cart.addCart();
   res.send(response)
-  //res.json({ message: 'cart added' })
+  
 })
 
 // post ej: /api/cart/0/product/3
@@ -53,11 +53,7 @@ router.post("/:id/product/:pid", async (req, res) => {
     let productId = req.params.pid;
     let response = await cart.addProductToCart(cartId, productId);
 
-    // if (response == false) {
-    //   res.send({ status: 500, message: "Server cant find the file" });
-    // } else {
-    //   res.send(response);
-    // }
+ 
 
     (response == false ? res.send({ status: 500, message: "Server cant find the file" }) : res.send(response));
 

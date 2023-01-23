@@ -1,7 +1,7 @@
 const fs = require('fs');
 
-const carritoFileName = "carrito.json"
-const productosFileName = "productos.json"
+const cartFileName = "cartshop.json"
+const productsFileName = "products.json"
 
 class CartManager {
   constructor(path) {
@@ -9,23 +9,23 @@ class CartManager {
   }
 
   getProducts = async() => {
-      let carritoFile = (`${this.path}${carritoFileName}`);
-      if (fs.existsSync(carritoFile)) {
-          const objects = await JSON.parse(fs.readFileSync(carritoFile, "utf-8"));
+      let cartFile = (`${this.path}${cartFileName}`);
+      if (fs.existsSync(cartFile)) {
+          const objects = await JSON.parse(fs.readFileSync(cartFile, "utf-8"));
           return objects;
       } else { 
-          console.log("No se encontró el archivo", carritoFileName);
+          console.log("No se encontró el archivo", cartFileName);
           return [];
       }
   }
 
   addCart = async () => {
-    let carritoFile = (`${this.path}${carritoFileName}`);
+    let cartFile = (`${this.path}${cartFileName}`);
     let newCartId = 0;
 
-    if (fs.existsSync(carritoFile)) {
+    if (fs.existsSync(cartFile)) {
       // Carrito existe, se agrega uno nuevo.
-        let cartsArray = await JSON.parse(fs.readFileSync(carritoFile, "utf-8"));
+        let cartsArray = await JSON.parse(fs.readFileSync(cartFile, "utf-8"));
         
         let lastCart = await cartsArray.pop();
         cartsArray.push(lastCart);
@@ -41,7 +41,7 @@ class CartManager {
         console.log(cartsArray);
 
         cartsArray = JSON.stringify(cartsArray);
-        fs.writeFileSync(carritoFile, cartsArray);
+        fs.writeFileSync(cartFile, cartsArray);
     } else {
         // Carrito no existe, se crea.
         let newCart = {
@@ -50,16 +50,16 @@ class CartManager {
         };
         let cartsArray = [newCart];
         cartsArray = JSON.stringify(cartsArray);
-        fs.writeFileSync(carritoFile, cartsArray);
+        fs.writeFileSync(cartFile, cartsArray);
     }
 
     return `Cart ID ${newCartId}`;
   };
 
   getCartById = async (id) => {
-    let carritoFile = (`${this.path}${carritoFileName}`);
-    if (fs.existsSync(carritoFile)) {
-      let cartsArray = await JSON.parse(fs.readFileSync(carritoFile, "utf-8"));
+    let cartFile = (`${this.path}${cartFileName}`);
+    if (fs.existsSync(cartFile)) {
+      let cartsArray = await JSON.parse(fs.readFileSync(cartFile, "utf-8"));
       let cart = cartsArray.find((element) => element.id == id);
 
       return (cart == undefined ? "No hay un cart con ese ID" : cart); 
@@ -69,18 +69,18 @@ class CartManager {
   };
 
   addProductToCart = async (cartId, productId) => {
-    let carritoFile = (`${this.path}${carritoFileName}`)
-    let productosFile = (`${this.path}${productosFileName}`)
+    let cartFile = (`${this.path}${cartFileName}`)
+    let productsFile = (`${this.path}${productsFileName}`)
     
-    if (fs.existsSync(carritoFile) && fs.existsSync(productosFile)) {
-      let cartsArray = await JSON.parse(fs.readFileSync(carritoFile, "utf-8"));
+    if (fs.existsSync(cartFile) && fs.existsSync(productosFile)) {
+      let cartsArray = await JSON.parse(fs.readFileSync(cartFile, "utf-8"));
       // Get carrito with ID
       let cart = cartsArray.find((element) => element.id == cartId);
 
       if (cart == undefined) {
         return "No se encuentra ningun carrito con ese ID";
       } else {
-        let products = await JSON.parse(fs.readFileSync(productosFile, "utf-8"));
+        let products = await JSON.parse(fs.readFileSync(productsFile, "utf-8"));
         console.log(products);
         // Get product with ID
         let product = products.find((element) => element.id == productId);
@@ -107,7 +107,7 @@ class CartManager {
           let cartPos = await cartsArray.findIndex(cartIdToSearch);
           cartsArray.splice(cartPos, 1, cart);
           cartsArray = JSON.stringify(cartsArray);
-          fs.writeFileSync(carritoFile, cartsArray);
+          fs.writeFileSync(cartFile, cartsArray);
           return "Producto agregado con exito";  // Deberia devolver status: ok? 
         }
       }
