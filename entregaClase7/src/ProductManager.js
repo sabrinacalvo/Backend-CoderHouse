@@ -1,5 +1,5 @@
 const fs = require('fs')
-const productosFileName = "productos.json"
+const productosFileName = "products.json"
 
 class ProductManager {
     constructor(path) {
@@ -7,7 +7,7 @@ class ProductManager {
     }
 
     getProducts = async() => {
-        let productFile = (`${this.path}productos.json`)
+        let productFile = (`${this.path}products.json`)
         console.log(process.cwd())
         if (fs.existsSync(productFile)) {
             const objects = await JSON.parse(fs.readFileSync(productFile, "utf-8"));

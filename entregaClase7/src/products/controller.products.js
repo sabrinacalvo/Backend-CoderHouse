@@ -2,6 +2,7 @@ const { Router } = require('express')
 const fs = require('fs')
 const ProductManager = require('../ProductManager.js');
 const router = Router()
+const { io } = require('../app')
 
 const pm1 = new ProductManager("./");
 
@@ -14,10 +15,14 @@ router.get('/', async (req, res) => {
   res.json( productsList )
 })
 
+
+
 const convertToNumber = (req, res, next) => {
   req.params.id = Number(req.params.id)
   next()
 }
+
+
 
 // Get product with id
 router.get('/:id', convertToNumber, async (req, res) => {
@@ -28,8 +33,40 @@ router.get('/:id', convertToNumber, async (req, res) => {
   }
 )
 
-router.post('/', (req, res) => {
-  res.json({ message: 'POST detected' })
-})
+router.post("/", async (req, res) => {
+  let product = req.query;
+  if (
+    !product.title ||
+    !product.description ||
+    !product.code ||
+    !product.price ||
+    !product.stock ||
+    !product.category
+  ) {
+    res.send({ status: 404, message: "Fill all params" });
+  } else {
+    if (!product.status) {
+      product.status = true;
+    } else {
+      product.status = product.status === "true";
+    }
+    if (!product.thumbnails) {
+      product.thumbnails = [];
+    } else {
+      product.thumbnails = [product.thumbnails];
+    }
+    product.price = parseInt(product.price);
+    product.stock = parseInt(product.stock);
+    if (isNaN(product.price) || isNaN(product.stock)) {
+      res.send({ status: 404, message: "Price and stock need to be numbers" });
+    } else {
+      let response = await pm.addProduct(product);
+      res.send({ status: 200, message: response });
+      let products = await pm.getProducts();
+      io.emit("products", products);
+      console.log(response);
+    }
+  }
+});
 
 module.exports = router
