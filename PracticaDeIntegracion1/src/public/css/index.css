@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: rgb(255, 255, 255);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+   
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #161515;
+    height: 95vh;
+  }
+  
+  h1 {
+    margin: 20px;
+    font-size:medium;
+  }
+input {
+  margin: 50px;
+  padding: 20px;
+  font-size:medium;
+  background-color: beige;
+  color: #161515;
+
+}
+  

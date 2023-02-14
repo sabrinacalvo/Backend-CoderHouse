@@ -1,0 +1,21 @@
+<div>
+  
+  <h1>Products</h1>
+   {{#each products}}
+   <div class="product">
+        <div style="display: grid; place-content: center;">
+          <img
+            src="{{thumbnails}}"
+            alt="{{title}}"
+            style="aspect-ratio: 1; width: 200px; object-fit: cover;"
+          />
+        </div>
+        <h2>Title: {{title}}</h2>
+        <h2>Price: ${{price}}</h2>
+        <p>{{description}}</p>
+      </div>
+  
+  {{/each}}
+</div>
+<script src="/socket.io/socket.io.js"></script>
+

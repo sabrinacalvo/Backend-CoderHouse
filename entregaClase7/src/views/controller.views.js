@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const { io } = require('socket.io-client')
+const pm1 =require('../ProductManager')
 
 const socket = io()
 
@@ -15,16 +16,25 @@ router.get('/', (req, res) => {
     })
 
 
-router.get('/realTimeProducts', (req, res) => {
+// router.get('/realTimeProducts', (req, res) => {
         
-    const product = {
-        title: "Funko Pop",
-        price:  "123",
-        description: "Funko POP"
+//     const product = {
+//         title: "Funko Pop",
+//         price:  "123",
+//         description: "Funko POP"
         
-    }
-    res.render('realTimeProducts.handlebars', { product, style: 'index.css' })
-    })
+//     }
+//     res.render('realTimeProducts.handlebars', { product, style: 'index.css' })
+//     })
+
+    router.get('/realtimeproducts', async (request, response)=> {
+        const products = await pm1.getProducts();
+        const renderObj = {
+            products: products
+        }
+        response.render('realTimeProducts', renderObj);
+    
+    });
 
 router.post('/', (req, res) => {
      socket.emit('newProduct', product)
