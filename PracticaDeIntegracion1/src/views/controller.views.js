@@ -7,12 +7,6 @@ const socket = io()
 
 const router = Router()
 
-router.get('/', (req, res) => {
-    const user = {
-            
-    }
-res.render('index.handlebars', { user, style: 'index.css' })
-})
 
 router.get('/realtimeproducts', async (req, res)=> {
     const products = await pm1.getProducts();

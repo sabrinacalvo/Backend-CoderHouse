@@ -26,6 +26,11 @@ input {
   color: #161515;
 
 }
+.productsList {
+   display: grid;
+   place-content: center
+}
+
 p {
   color: white;
   font-size: medium;

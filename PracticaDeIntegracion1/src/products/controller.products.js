@@ -35,14 +35,14 @@ router.get('/:id', convertToNumber, async (req, res) => {
 router.post("/loadProducts", async (req, res) => {
 try {
   let listProducts = await pm1.loadProducts() 
+  console.log('listProducts', listProducts)
 
   // let users =  await productModel.find();
-  const response = listProducts.map(({ _id, title, description, price, thumbnail, code, stock }) => ({
+  const response = listProducts.map(({ _id, title, description, price, thumbnail, stock }) => ({
     title,
     description,
     price,
     thumbnail,
-    code,
     stock
   }))
   console.log(response)
@@ -58,7 +58,6 @@ router.post("/", async (req, res) => {
   if (
     !product.title ||
     !product.description ||
-    !product.code ||
     !product.price ||
     !product.stock ||
     !product.category

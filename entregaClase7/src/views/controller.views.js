@@ -27,12 +27,12 @@ router.get('/', (req, res) => {
 //     res.render('realTimeProducts.handlebars', { product, style: 'index.css' })
 //     })
 
-    router.get('/realtimeproducts', async (request, response)=> {
+    router.get('/realtimeproducts', async (req, res)=> {
         const products = await pm1.getProducts();
         const renderObj = {
             products: products
         }
-        response.render('realTimeProducts', renderObj);
+        res.render('realTimeProducts', renderObj);
     
     });
 
