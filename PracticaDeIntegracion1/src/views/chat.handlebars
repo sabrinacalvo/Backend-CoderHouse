@@ -2,14 +2,20 @@
   <h1>CoderChat</h1>
 </header>
 <main>
-  <div id="chatBox">
-  </div>
-  <div id="Messages">
+
+  <div>
     <input type="text" id="chatBox" />
-    <button onclick="sendMessage()">|></button>
+    
+    <div>
+      <p id="messageLogs"> MENSAJES </p>
+    </div>
+    
+   
+   
   </div>
 </main>
 
+<script src="/socket.io/socket.io.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/chat.js"></script>
-<script src="/socket.io/socket.io.js"></script>
+

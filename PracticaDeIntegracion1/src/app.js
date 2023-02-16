@@ -3,19 +3,17 @@ const { Server } = require('socket.io')
 const handlebars = require('express-handlebars')
 const morgan = require('morgan')
 const mongoose = require('mongoose');
-//const productManager = require('../src/ProductManager.js');
 const routes = require('./routes/index')
 const viewsRouter = require('./routes/views.routes')
 const ProductDbManager  = require('./dao/dbManagers/products.dbManager.js');
 const messageManager = require('./dao/dbManagers/messages.dbManager')
 // const port = 8080
 const config = require('./config');
-// const messageModel = require('./dao/models/messages.model');
+
 const {port} = config 
 
 const app = express();
 
-// const pm1 = new productManager("./products.json");
 app.use(express.json()); 
 app.use(express.static(__dirname +  '/public'))
 console.log(__dirname)
@@ -37,45 +35,47 @@ app.use(express.static(__dirname + '/public'))
 
 routes(app) 
 
-// Socket
-
 const httpServer = app.listen(port, () => {
     console.log(`Servidor en el puerto ${port}`)
 })
 
+
+// Socket
 const io = new Server(httpServer);
 
-let pm1 = new ProductDbManager();
-let msg = new messageManager();
+var pm1 = new ProductDbManager();
+var msg = new messageManager();
 
 io.on("connection", async (socket) => {
   console.log("Se inicio la comunicacion");
 
-  let messages = await msg.getAll();
+  let msglist = await msg.getAll();
+  console.log("Estos son los mensajes:", msglist)
   let products = await pm1.getProducts();
 
   socket.on("products", (data) => {
+    console.log('data1', data)
     io.emit(data);
   });
 
   socket.on("message", data => {
     console.log(data)
     msg.addMessage(data);
-    messages.push(data);
-
-    socket.emit("Messages", messages);
+    msglist.push(data);
+    io.emit("messageLogs", msglist);
   });
 
    socket.on("authenticated", (data) => {
     socket.broadcast.emit("newUserConnected", data);
-    socket.emit("Messages", messages);
+    socket.emit("messages", msglist);
    });
 
-   socket.emit("products", products);
+   socket.emit("productsList", products);
 
-   socket.on("products", (data) => {
+   socket.on("productsList", (data) => {
+    console.log('data2', data)
      products.push(data);
-     io.emit("products", products);
+     io.emit("productsList", products);
   });
  });
 
