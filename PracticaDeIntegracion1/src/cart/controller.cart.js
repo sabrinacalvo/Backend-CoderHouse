@@ -8,15 +8,22 @@ const router = Router()
 const cart = new CartDbManager();
 // Get all Carts in file
 router.get('/', async (req, res) => {
-    let consultas = req.query;
+  try {
     let productsList = await cart.getProducts();
-    console.log(productsList)
-    
+       
     res.json( productsList )
+
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({message: 'Error al acceder al carrito'})
+  }
+    
 })
 
 // Get cart con ID -> cid
 router.get("/:cid", async (req, res) => {
+  try {
+ 
     let cartId = req.params.cid;
     cartId = parseInt(cartId);
   
@@ -35,15 +42,29 @@ router.get("/:cid", async (req, res) => {
         res.send({ status: 500, message: "Server cant find the file" });
       }
     }
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message: 'Error al acceder al carrito'});
+}
+    
   });
 
   
 
 router.post('/', async (req, res) => {
-  let response = await cart.addCart();
-  res.send(response)
+
+  try {
+    let response = await cart.addCart();
+    res.send(response)
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({message: 'Error al crear el carrito'});
+  }
   
 })
+
 
 // post ej: /api/cart/0/product/3
 router.post("/:id/product/:pid", async (req, res) => {

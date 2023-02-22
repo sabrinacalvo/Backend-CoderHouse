@@ -13,6 +13,7 @@ const productSchema = mongoose.Schema({
   category: String
 });
 
+productSchema.plugin(mongoosePaginate)
 const productModel = mongoose.model(productsCollection, productSchema);
 
 module.exports = productModel;
