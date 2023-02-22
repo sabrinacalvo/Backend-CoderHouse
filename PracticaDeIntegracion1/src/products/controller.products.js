@@ -32,39 +32,6 @@ router.get('/', async (req, res) => {
 })
 
 
-
-// router.get('/', async (limit=10, page=1, query, sort) => {
-//   let filter = {};
-//   query ? filter = {category: query} : filter = {};
-//   const options = {
-//     limit,
-//     page,
-//     sort: {price: sort}
-// }
-// try {
-//   const response = await productModel.paginate(filter,options);
-//   return {
-//     status: "success",
-//     payload: response,
-//     totalPages: response.totalPages,
-//     prevPage: response.prevPage,
-//     nextPage: response.nextPage,
-//     page: response.page,
-//     hasPrevPage: response.hasPrevPage,
-//     hasNextPage: response.hasNextPage,
-//     prevLink: `http://localhost:8080/api/products?limit=$(limit)&page=${response.prevPage}`,
-//     nextLink: `http://localhost:8080/api/products?limit=$(limit)&page=${response.prevPage}`
-//   }
-// } catch (error) {
-//   console.log(error)
-//   return {
-//     status: "error",
-//     payload: []
-//   }
-// }
-
-// })
-
 const convertToNumber = (req, res, next) => {
   req.params.id = Number(req.params.id)
   next()
