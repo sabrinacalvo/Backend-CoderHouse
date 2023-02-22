@@ -2,7 +2,7 @@ const cartModel = require('../models/carts.model.js');
 
 class CartDbManager {
   constructor() {
-    console.log("Cart MongoDBs Started");
+    console.log("Cart MongoDb Started");
   }
 
   getProducts = async () => {

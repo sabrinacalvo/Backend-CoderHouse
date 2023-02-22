@@ -6,7 +6,7 @@ const router = Router()
 
 //const cart = new CartManager("./");
 const cart = new CartDbManager();
-// Get all Carts in file -> Just for checking.
+// Get all Carts in file
 router.get('/', async (req, res) => {
     let consultas = req.query;
     let productsList = await cart.getProducts();

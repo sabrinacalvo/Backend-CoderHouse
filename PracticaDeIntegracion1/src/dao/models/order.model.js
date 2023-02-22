@@ -1,16 +1,18 @@
 const mongoose = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate-v2')
 
 const orderCollection = 'orders'
 
 const orderSchema = new mongoose.Schema({
       name: String,
-      size: {
+      category: {
         type: String,
-        enum: ["small", "medium"],
-        default: "medium"
+        enum: ["funko", "t-shirt", "cup", "cd"],
+        default: "cd"
       },
       price: Number,
-      quantity: Number
+      quantity: Number,
+      date : Date
 })
 
 const orderModel = mongoose.model(orderCollection, orderSchema);

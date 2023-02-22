@@ -2,7 +2,7 @@ const messageModel = require('../models/messages.model.js');
 
 class Message {
   constructor() {
-    console.log("Starting MSG MongoDB");
+    console.log("Message MongoDb Started");
   }
 
   getAll = async () => {

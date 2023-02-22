@@ -7,7 +7,6 @@ const routes = require('./routes/index')
 const viewsRouter = require('./routes/views.routes')
 const ProductDbManager  = require('./dao/dbManagers/products.dbManager.js');
 const messageManager = require('./dao/dbManagers/messages.dbManager')
-// const port = 8080
 const config = require('./config');
 
 const {port} = config 
@@ -16,7 +15,6 @@ const app = express();
 
 app.use(express.json()); 
 app.use(express.static(__dirname +  '/public'))
-console.log(__dirname)
 
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'))
@@ -39,7 +37,6 @@ const httpServer = app.listen(port, () => {
     console.log(`Servidor en el puerto ${port}`)
 })
 
-
 // Socket
 const io = new Server(httpServer);
 
@@ -50,8 +47,9 @@ io.on("connection", async (socket) => {
   console.log("Se inicio la comunicacion");
 
   let msglist = await msg.getAll();
-  console.log("Estos son los mensajes:", msglist)
+  console.log("IO leyendo mensajes");
   let products = await pm1.getProducts();
+  console.log("IO leyendo productos");
 
   socket.on("products", (data) => {
     console.log('data1', data)
@@ -59,7 +57,6 @@ io.on("connection", async (socket) => {
   });
 
   socket.on("message", data => {
-    console.log(data)
     msg.addMessage(data);
     msglist.push(data);
     io.emit("messageLogs", msglist);
@@ -73,7 +70,6 @@ io.on("connection", async (socket) => {
    socket.emit("productsList", products);
 
    socket.on("productsList", (data) => {
-    console.log('data2', data)
      products.push(data);
      io.emit("productsList", products);
   });

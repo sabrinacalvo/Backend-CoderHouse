@@ -4,20 +4,49 @@ const fs = require('fs')
 const ProductDbManager = require('../dao/dbManagers/products.dbManager.js');
 const productModel = require('../dao/models/products.model')
 const router = Router()
-const { io } = require('../app')
 
 //const pm1 = new ProductManager("./");
 const pm1 = new ProductDbManager();
 
-// Get all Products in file
-router.get('/', async (req, res) => {
-  let consultas = req.query;
-  let productsList = await pm1.getProducts();
-  console.log(productsList)
+// Get all Products
+// router.get('/', async (req, res) => {
+//   let consultas = req.query;
+//   let productsList = await pm1.getProducts();
   
-  res.json( productsList )
-})
+//   res.json( productsList )
+// })
 
+router.get('/', async (limit, page, query, sort) => {
+  let filter = {};
+  query ? filter = {category: query} : filter = {};
+  const options = {
+    limit,
+    page,
+    sort: {price: sort}
+}
+try {
+  const response = await productModel.paginate(filter,options);
+  return {
+    status: "success",
+    payload: response,
+    totalPages: response.totalPages,
+    prevPage: response.prevPage,
+    nextPage: response.nextPage,
+    page: response.page,
+    hasPrevPage: response.hasPrevPage,
+    hasNextPage: response.hasNextPage,
+    prevLink: `http://localhost:8080/api/products?limit=$(limit)&page=${response.prevPage}`,
+    nextLink: `http://localhost:8080/api/products?limit=$(limit)&page=${response.prevPage}`
+  }
+} catch (error) {
+  console.log(error)
+  return {
+    status: "error",
+    payload: []
+  }
+}
+
+})
 
 const convertToNumber = (req, res, next) => {
   req.params.id = Number(req.params.id)
@@ -35,19 +64,19 @@ router.get('/:id', convertToNumber, async (req, res) => {
 router.post("/loadProducts", async (req, res) => {
 try {
   let listProducts = await pm1.loadProducts() 
-  console.log('listProducts', listProducts)
+  console.log('Loading products: ', listProducts)
 
-  // let users =  await productModel.find();
-  const response = listProducts.map(({ _id, title, description, price, thumbnail, stock }) => ({
+  const response = listProducts.map(({ id, title, description, price, thumbnail, stock, available, category }) => ({
     title,
     description,
     price,
     thumbnail,
-    stock
+    stock,
+    available,
+    category
   }))
   console.log(response)
   await productModel.insertMany(response)
-  // res.json({ Message: 'Productos cargados'})
 } catch(error) {
   console.log(error)
 }

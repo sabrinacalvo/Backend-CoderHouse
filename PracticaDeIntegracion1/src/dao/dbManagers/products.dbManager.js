@@ -11,6 +11,7 @@ class ProductDbManager {
     if (fs.existsSync(this.file)) {
       const data = await fs.promises.readFile(this.file)
       const res = JSON.parse(data)
+      console.log("loading products from file", this.file );
       return res
     }
     return(`No se encontro el archivo ${this.file}`)
