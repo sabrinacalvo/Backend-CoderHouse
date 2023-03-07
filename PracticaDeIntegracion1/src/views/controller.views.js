@@ -7,7 +7,7 @@ const socket = io()
 
 const router = Router()
 
-
+// RealTimeProducts
 router.get('/realtimeproducts', async (req, res)=> {
     const products = await pm1.getProducts();
     const renderObj = {
@@ -17,27 +17,30 @@ router.get('/realtimeproducts', async (req, res)=> {
 });
 
 router.get('/chat', async (req, res)=> {
-    res.render('chat');
-
+    res.render('chat.handlebars');
 });
 
+router.get('/cookies', (req, res) => {
+    res.render('cookies.handlebars')
+})
 
-router.post('/', (req, res) => {
-     socket.emit('newProduct', product)
-        const product = {
-            title: "Mate",
-            price:  "123",
-            description: "Funko POP",
-            
+router.get('/signup',(req, res) => {
+    res.render('signup.handlebars')
+})
 
-        }
+router.get('/login', async (req,res)=> {
+    res.render('login.handlebars');
+})
 
-     
-    
-    
-    res.render('index.handlebars', { product, style: 'index.css' })
-    })
-    
+// router.post('/', (req, res) => {
+//      socket.emit('newProduct', product)
+//         const product = {
+//             title: "Mate",
+//             price:  "123",
+//             description: "Funko POP",
+//         }   
 
+// res.render('index.handlebars', { product, style: 'index.css' })
+// })
 
 module.exports = router 

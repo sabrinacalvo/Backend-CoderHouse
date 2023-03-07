@@ -1,28 +1,50 @@
 const express = require('express')
 const { Server } = require('socket.io')
-const handlebars = require('express-handlebars')
 const morgan = require('morgan')
 const mongoose = require('mongoose');
 const routes = require('./routes/index')
-const viewsRouter = require('./routes/views.routes')
 const ProductDbManager  = require('./dao/dbManagers/products.dbManager.js');
 const messageManager = require('./dao/dbManagers/messages.dbManager')
 const config = require('./config');
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')
+const FileStore = require('session-file-store')
+const handlebars = require('express-handlebars')
+
 
 const {port} = config 
 
 const app = express();
 
+
+
 app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static(__dirname +  '/public'))
+app.use(cookieParser());
+app.use(session({
+    store:MongoStore.create({
+      mongoUrl: 'mongodb+srv://admin:tbMJI5k27RWXs5jO@ecommerce.nrktv74.mongodb.net/?retryWrites=true&w=majority',
+      mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
+       ttl: 15,
+     }),
+     secret: 'loQueQuieras',
+     resave: false,
+     saveUninitialized: false
+ }))
 
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'))
 
-mongoose.set("strictQuery", false);
-const connection = mongoose.connect(
-    "mongodb+srv://admin:tbMJI5k27RWXs5jO@ecommerce.nrktv74.mongodb.net/?retryWrites=true&w=majority"
-);
+// mongoose.connect('mongodb+srv://admin:tbMJI5k27RWXs5jO@ecommerce.nrktv74.mongodb.net/?retryWrites=true&w=majority')
+//   .then(response => console.log('db is connected'))
+//   .catch(error => console.log(error))
+
+ mongoose.set("strictQuery", false);
+ const connection = mongoose.connect(
+     "mongodb+srv://admin:tbMJI5k27RWXs5jO@ecommerce.nrktv74.mongodb.net/?retryWrites=true&w=majority"
+ );
 
 // handlebars
 
@@ -74,6 +96,9 @@ io.on("connection", async (socket) => {
      io.emit("productsList", products);
   });
  });
+
+ 
+ 
 
 module.exports = io
 
