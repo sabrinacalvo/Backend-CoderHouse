@@ -1,28 +1,44 @@
 const express = require('express')
 const { Server } = require('socket.io')
-const handlebars = require('express-handlebars')
-const morgan = require('morgan')
 const mongoose = require('mongoose');
-const routes = require('./routes/index')
-const viewsRouter = require('./routes/views.routes')
 const ProductDbManager  = require('./dao/dbManagers/products.dbManager.js');
 const messageManager = require('./dao/dbManagers/messages.dbManager')
-const config = require('./config');
+const handlebars = require('express-handlebars')
+const morgan = require('morgan')
+const routes = require('./routes/index')
+const viewsRouter = require('./routes/views.routes')
+const config = require('./config')
+const session = require('express-session')
+const FileStore = require('session-file-store')
+const MongoStore = require('connect-mongo')
 
 const {port} = config 
+
+const fileStore = FileStore(session)
 
 const app = express();
 
 app.use(express.json()); 
 app.use(express.static(__dirname +  '/public'))
-
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
-mongoose.set("strictQuery", false);
-const connection = mongoose.connect(
-    "mongodb+srv://admin:tbMJI5k27RWXs5jO@ecommerce.nrktv74.mongodb.net/?retryWrites=true&w=majority"
-);
+app.use(session({
+  store:MongoStore.create({
+    mongoUrl:'mongodb+srv://admin:tbMJI5k27RWXs5jO@ecommerce.nrktv74.mongodb.net/40305-sessions?retryWrites=true&w=majority',
+    mongoOptions: { useNewUrlParser:true, useUnifiedTopology: true },
+    ttl:15,
+   }),
+  secret: 'abcdefg',
+  resave: false,
+  saveUninitialized: false
+}))
+
+
+  mongoose.set("strictQuery", false);
+  const connection = mongoose.connect(
+     "mongodb+srv://admin:tbMJI5k27RWXs5jO@ecommerce.nrktv74.mongodb.net/Data?retryWrites=true&w=majority"
+  );
 
 // handlebars
 
