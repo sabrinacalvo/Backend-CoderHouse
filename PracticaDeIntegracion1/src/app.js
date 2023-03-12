@@ -11,6 +11,8 @@ const config = require('./config')
 const session = require('express-session')
 const FileStore = require('session-file-store')
 const MongoStore = require('connect-mongo')
+const passport = require('passport')
+const initializePassport = require('./config/passport.config')
 
 const {port} = config 
 
@@ -33,6 +35,10 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
+
+initializePassport()
+app.use(passport.initialize())
+app.use(passport.session())
 
 
   mongoose.set("strictQuery", false);
