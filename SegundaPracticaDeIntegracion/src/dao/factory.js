@@ -6,21 +6,18 @@ const { persistence } = config.app;
 let ProductDAO;
 let CartDAO;
 let UserDAO;
-module.exports = ProductDAO;
-module.exports = CartDAO;
-module.exports = UserDAO;
 
 switch (persistence) {
     case 'MONGO':
         mongoDB.getInstance();
 
-        const ProductDbManager = require("./dbManagers/products.dbManager.js");
+        const ProductDbManager = require('./dbManagers/products.dbManager.js');
         ProductDAO = new ProductDbManager();
 
-        const CartManager = require("./dbManagers/carts.dbManager.js");
+        const CartManager = require('./dbManagers/carts.dbManager.js');
         CartDAO = new CartManager();
 
-        const UserManager = require("./dbManagers/user.dbManager.js");
+        const UserManager = require('./dbManagers/user.dbManager.js');
         UserDAO = new UserManager();
 
         console.log('MongoDB as storage persistence');
@@ -42,4 +39,6 @@ switch (persistence) {
         console.log('Local Files as storage persistence');
         break;
 }
+
+module.exports = { ProductDAO, CartDAO, UserDAO }
 

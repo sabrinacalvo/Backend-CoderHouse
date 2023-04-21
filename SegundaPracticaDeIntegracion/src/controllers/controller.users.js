@@ -3,6 +3,7 @@ const passport = require('passport')
 const User = require('../dao/models/user.model')
 const { createHash } = require('../utils/cryptPassword')
 
+const { UserDAO } = require('../dao/factory')
 const router = Router()
 
 
@@ -13,7 +14,7 @@ router.post('/', passport.authenticate('register', { failureRedirect: '/failRegi
 //    const { first_name, last_name, age, email, password } = req.body
         
 //  // consulta a la base de datos  
-// //    const userExist = await User.findOne({email})
+// //    const userExist = await UserDAO.findOne({email})
 // //    if(userExist) return
 
 //    const newUserInfo = {

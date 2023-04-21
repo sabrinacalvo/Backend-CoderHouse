@@ -13,7 +13,7 @@ const routes = (app) => {
   app.use('/api/products', products)
   app.use('/api/messages', messages)
   app.use('/api/orders', orders) 
-  app.use('/',viewsTemplateController)
+  app.use('/', viewsTemplateController)
   app.use('/users', usersController)
   app.use('/auth', authController)
 }

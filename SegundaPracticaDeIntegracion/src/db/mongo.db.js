@@ -3,7 +3,6 @@ const config = require("../config/index.js");
 
 const { userDB, passDB, hostDB } = config.db;
 const url = `mongodb+srv://${userDB}:${passDB}@${hostDB}?retryWrites=true&w=majority`;
-console.log("LA URL DE MONGO", url)
 const options = {useNewUrlParser: true, useUnifiedTopology: true};
 
 class mongoConnection {

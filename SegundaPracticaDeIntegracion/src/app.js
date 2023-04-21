@@ -9,10 +9,11 @@ const viewsRouter = require('./routes/views.routes')
 const config = require('./config')
 const session = require('express-session')
 const FileStore = require('session-file-store')
-// const mongoose = require('mongoose')
-// const MongoStore = require('connect-mongo')
+const mongoose = require('mongoose')
+const MongoStore = require('connect-mongo')
 const passport = require('passport')
-const initializePassport = require('./config/passport.config')
+const initializePassport = require('./config/passport.config');
+const mongoConnection = require('./db/mongo.db.js');
 
 const {port} = config.app 
 
@@ -25,16 +26,16 @@ app.use(express.static(__dirname +  '/public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
-// app.use(session({
-//   store:MongoStore.create({
-//     mongoUrl:'mongodb+srv://admin:tbMJI5k27RWXs5jO@ecommerce.nrktv74.mongodb.net/40305-sessions?retryWrites=true&w=majority',
-//     mongoOptions: { useNewUrlParser:true, useUnifiedTopology: true },
-//     ttl:15,
-//    }),
-//   secret: 'abcdefg',
-//   resave: false,
-//   saveUninitialized: false
-// }))
+app.use(session({
+    store:MongoStore.create({
+    mongoUrl:'mongodb+srv://admin:tbMJI5k27RWXs5jO@ecommerce.nrktv74.mongodb.net/40305-sessions?retryWrites=true&w=majority',
+    mongoOptions: { useNewUrlParser:true, useUnifiedTopology: true },
+    ttl:15,
+   }),
+  secret: 'abcdefg',
+  resave: false,
+  saveUninitialized: false
+}))
 
 initializePassport()
 app.use(passport.initialize())
