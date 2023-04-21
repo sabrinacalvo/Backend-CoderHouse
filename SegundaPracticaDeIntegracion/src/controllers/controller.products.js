@@ -1,12 +1,14 @@
 const { Router } = require('express')
 const fs = require('fs')
 //const ProductManager = require('../ProductManager.js');
-const ProductDbManager = require('../dao/dbManagers/products.dbManager.js');
+//const ProductDbManager = require('../dao/dbManagers/products.dbManager.js');
+const ProductDAO = require("../dao/factory.js");
 const productModel = require('../dao/models/products.model')
 const router = Router()
 
 //const pm1 = new ProductManager("./");
-const pm1 = new ProductDbManager();
+//const pm1 = new ProductDbManager();
+const pm1 = ProductDAO;
 
 // Get all Products
 // router.get('/', async (req, res) => {

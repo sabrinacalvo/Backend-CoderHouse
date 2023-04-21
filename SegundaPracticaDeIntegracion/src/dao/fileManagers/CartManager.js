@@ -3,7 +3,7 @@ const fs = require('fs');
 const cartFileName = "cartshop.json"
 const productsFileName = "products.json"
 
-class CartManager {
+class FileCartManager {
   constructor(path) {
     this.path = path;
   }
@@ -118,4 +118,4 @@ class CartManager {
   };
 }
 
-module.exports = CartManager
+module.exports = FileCartManager
