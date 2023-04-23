@@ -1,9 +1,8 @@
 const { Router } = require('express')
 const passport = require('passport')
-// const User = require('../dao/models/user.model')
+const User = require('../dao/models/user.model')
 const { createHash } = require('../utils/cryptPassword')
-const UserDTO = require('../DTOs/User.dto')
-const usersService = require('../repositories')
+
 const router = Router()
 
 
@@ -11,12 +10,24 @@ router.post('/', passport.authenticate('register', { failureRedirect: '/failRegi
  async (req, res) => {
 
    try { 
-    const user = req.body
-    // const newUserInfo = new UserDTO(user)
-    const newUser = await usersService.create(user)
+//    const { first_name, last_name, age, email, password } = req.body
+        
+//  // consulta a la base de datos  
+// //    const userExist = await User.findOne({email})
+// //    if(userExist) return
+
+//    const newUserInfo = {
+//         first_name,
+//         last_name,
+//         age,
+//         email,
+//         password: createHash(password)
+//     }
+        
+//      const newUser = await User.create(newUserInfo)
 
      res.json({ message: 'Usuario registrado' })
-    }    catch (error) {
+  } catch (error) {
         console.log(error)
          if (error.code === 11000) return res.status(400).json({ error: 'El usuario ya existe' })
          res.status(500).json({ error: 'Error interno del servidor' })
@@ -24,15 +35,8 @@ router.post('/', passport.authenticate('register', { failureRedirect: '/failRegi
  })
 
  router.get('/failRegister', async (req, res) => {
-  try {
-    const users = await usersService.getAll()
-    console.log('Falló el registro');
-    res.json({ error: 'Falló', message: users });
-
-  } catch (error) {
-    res.json({error: 'error', error})
-  }
-  
+  console.log('Falló el registro');
+  res.json({ error: 'Falló' });
 });
 
 

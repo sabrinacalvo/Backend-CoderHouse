@@ -1,19 +1,10 @@
-require('dotenv').config()
-
+// require('dotenv').config()
 const dotenv = require('dotenv')
 
 dotenv.config()
 
 const config = {
-    app: {
-        port: process.env.PORT || 8080,
-        persistence: process.env.PERSISTENCE,
-    },
-    db: {
-        userDB: process.env.USER_DB,
-        passDB: process.env.PASS_DB,
-        hostDB: process.env.HOST_DB
-    }
+    port: process.env.PORT || 8080
 }
 
 module.exports =  config

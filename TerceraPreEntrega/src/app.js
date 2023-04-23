@@ -1,6 +1,6 @@
 const express = require('express')
-const session = require('express-session')
 const { Server } = require('socket.io')
+const mongoose = require('mongoose');
 const ProductDbManager  = require('./dao/dbManagers/products.dbManager.js');
 const messageManager = require('./dao/dbManagers/messages.dbManager')
 const handlebars = require('express-handlebars')
@@ -8,14 +8,13 @@ const morgan = require('morgan')
 const routes = require('./routes/index')
 const viewsRouter = require('./routes/views.routes')
 const config = require('./config')
-
+const session = require('express-session')
 const FileStore = require('session-file-store')
-const mongoose = require('mongoose')
 const MongoStore = require('connect-mongo')
 const passport = require('passport')
 const initializePassport = require('./config/passport.config')
 
-const {port} = config.app 
+const {port} = config 
 
 const fileStore = FileStore(session)
 
@@ -42,10 +41,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
-  // mongoose.set("strictQuery", false);
-  // const connection = mongoose.connect(
-  //    "mongodb+srv://admin:tbMJI5k27RWXs5jO@ecommerce.nrktv74.mongodb.net/Data?retryWrites=true&w=majority"
-  // );
+  mongoose.set("strictQuery", false);
+  const connection = mongoose.connect(
+     "mongodb+srv://admin:tbMJI5k27RWXs5jO@ecommerce.nrktv74.mongodb.net/Data?retryWrites=true&w=majority"
+  );
 
 
 app.engine('handlebars', handlebars.engine())
