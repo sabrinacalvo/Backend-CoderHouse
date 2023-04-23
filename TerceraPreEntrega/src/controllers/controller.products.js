@@ -2,7 +2,7 @@ const { Router } = require('express')
 const fs = require('fs')
 //const ProductManager = require('../ProductManager.js');
 //const ProductDbManager = require('../dao/dbManagers/products.dbManager.js');
-const ProductDAO = require("../dao/factory.js");
+const {ProductDAO} = require("../dao/factory.js");
 const productModel = require('../dao/models/products.model')
 const router = Router()
 
@@ -11,27 +11,26 @@ const router = Router()
 const pm1 = ProductDAO;
 
 // Get all Products
-// router.get('/', async (req, res) => {
-//   let consultas = req.query;
-//   let productsList = await pm1.getProducts();
-  
-//   res.json( productsList )
-// })
-
 router.get('/', async (req, res) => {
-  const limit = parseInt(req.query.limit) || 10;
-  const page = parseInt(req.query.page)  || 1; 
-  const query = req.query.query || null;
-  const sort = req.query.sort || null;
-  
-  try {
-      const products = await pm1.getProducts(limit, page, query, sort);
-      return res.json(products);
-  } catch (error) {
-      console.log(error);
-      res.status(500).json({message: 'Error al acceder a los productos'});
-  }
+  let consultas = req.query;
+  let productsList = await pm1.getProductsOld();
+  res.json( productsList )
 })
+
+// router.get('/', async (req, res) => {
+//   const limit = parseInt(req.query.limit) || 10;
+//   const page = parseInt(req.query.page)  || 1; 
+//   const query = req.query.query || null;
+//   const sort = req.query.sort || null;
+  
+//   try {
+//       const products = await pm1.getProducts(limit, page, query, sort);
+//       return res.json(products);
+//   } catch (error) {
+//       console.log(error);
+//       res.status(500).json({message: 'Error al acceder a los productos'});
+//   }
+// })
 
 
 const convertToNumber = (req, res, next) => {

@@ -6,9 +6,7 @@ const { persistence } = config.app;
 let ProductDAO;
 let CartDAO;
 let UserDAO;
-module.exports = ProductDAO;
-module.exports = CartDAO;
-module.exports = UserDAO;
+module.exports = { ProductDAO, CartDAO, UserDAO };
 
 switch (persistence) {
     case 'MONGO':

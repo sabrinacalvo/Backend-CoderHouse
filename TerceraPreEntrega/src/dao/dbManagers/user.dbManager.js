@@ -1,8 +1,19 @@
 const User = require("../models/user.model.js");
 
 class UserManager {
+    constructor(){
+        console.log('se creo el user')
+    }
+    async getAll() {
+      try {
+        return await  User.find
+      } catch (error) {
+        throw new Error(error)
+      }
+    }
 
     registerUser = async (newUserInfo) => {
+        
         try {
             const newUser = await User.create(newUserInfo);
             return newUser;
@@ -10,6 +21,7 @@ class UserManager {
             console.log(error);
             throw error;
         }
+     
     };
 
     findUserByEmail = async (emailToSeach) => {
@@ -31,6 +43,7 @@ class UserManager {
             throw error;
         }
     }
+
 };
 
 module.exports = UserManager;

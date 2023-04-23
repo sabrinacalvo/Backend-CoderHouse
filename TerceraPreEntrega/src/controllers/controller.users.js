@@ -1,9 +1,9 @@
 const { Router } = require('express')
 const passport = require('passport')
-const User = require('../dao/models/user.model')
+// const User = require('../dao/models/user.model')
 const { createHash } = require('../utils/cryptPassword')
 const UserDTO = require('../DTOs/User.dto')
-
+const usersService = require('../repositories')
 const router = Router()
 
 
@@ -12,10 +12,8 @@ router.post('/', passport.authenticate('register', { failureRedirect: '/failRegi
 
    try { 
     const user = req.body
-        
-    const newUserInfo = new UserDTO(user)
-
-    const newUser = await user.create(newUserInfo)
+    // const newUserInfo = new UserDTO(user)
+    const newUser = await usersService.create(user)
 
      res.json({ message: 'Usuario registrado' })
     }    catch (error) {
@@ -26,8 +24,15 @@ router.post('/', passport.authenticate('register', { failureRedirect: '/failRegi
  })
 
  router.get('/failRegister', async (req, res) => {
-  console.log('Falló el registro');
-  res.json({ error: 'Falló' });
+  try {
+    const users = await usersService.getAll()
+    console.log('Falló el registro');
+    res.json({ error: 'Falló', message: users });
+
+  } catch (error) {
+    res.json({error: 'error', error})
+  }
+  
 });
 
 
