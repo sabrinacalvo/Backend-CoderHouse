@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node src/app.js",
-    "start:dev": "nodemon src/app.js",
+    "start:dev": "NODE_ENV=development nodemon src/app.js",
+    "start": "NODE_ENV=production nodemon src/app.js",
     "deleteUsers": "node deleteUsers.js"
   },
   "keywords": [],

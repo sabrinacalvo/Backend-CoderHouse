@@ -1,4 +1,4 @@
-const User = require("../models/user.model.js");
+const Users = require("../models/user.model.js");
 
 class UserManager {
     constructor(){
@@ -6,7 +6,7 @@ class UserManager {
     }
     async getAll() {
       try {
-        return await  User.find
+        return await  Users.find()
       } catch (error) {
         throw new Error(error)
       }
@@ -15,7 +15,7 @@ class UserManager {
     registerUser = async (newUserInfo) => {
         
         try {
-            const newUser = await User.create(newUserInfo);
+            const newUser = await Users.create(newUserInfo);
             return newUser;
         } catch (error) {
             console.log(error);
@@ -26,7 +26,7 @@ class UserManager {
 
     findUserByEmail = async (emailToSeach) => {
         try {
-            const user = await User.findOne({email: emailToSeach});
+            const user = await Users.findOne({email: emailToSeach});
             return user? user : {}
         } catch(error) {
             console.log(error);
@@ -36,7 +36,7 @@ class UserManager {
 
     findUserById = async (idToSeach) => {
         try {
-            const user = await User.findById(idToSeach);
+            const user = await Users.findById(idToSeach);
             return user? user : {};
         } catch(error) {
             console.log(error);

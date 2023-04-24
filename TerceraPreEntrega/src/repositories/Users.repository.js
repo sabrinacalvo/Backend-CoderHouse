@@ -7,7 +7,7 @@ class UserRepository {
 
     async getAll(){
         try {
-            return await this.UserDAO.getAll()   
+          return await this.UserDAO.getAll()   
         } catch (error) {
           throw error
 

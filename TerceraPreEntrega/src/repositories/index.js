@@ -1,7 +1,7 @@
-const UserRepository = require("./Users.repository");
+const UsersRepository = require("./Users.repository");
 const { UserDAO } = require('../dao/factory')
 
-const usersService = new UserRepository(UserDAO)
+const usersService = new UsersRepository(UserDAO)
 
 
 module.exports = usersService

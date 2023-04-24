@@ -14,7 +14,8 @@ const MongoStore = require('connect-mongo')
 const passport = require('passport')
 const initializePassport = require('./config/passport.config')
 
-const {port} = config 
+
+const {port} = config.app
 
 const fileStore = FileStore(session)
 
@@ -41,10 +42,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
-  mongoose.set("strictQuery", false);
-  const connection = mongoose.connect(
-     "mongodb+srv://admin:tbMJI5k27RWXs5jO@ecommerce.nrktv74.mongodb.net/Data?retryWrites=true&w=majority"
-  );
+  // mongoose.set("strictQuery", false);
+  // const connection = mongoose.connect(
+  //    "mongodb+srv://admin:tbMJI5k27RWXs5jO@ecommerce.nrktv74.mongodb.net/Data?retryWrites=true&w=majority"
+  // );
 
 
 app.engine('handlebars', handlebars.engine())
@@ -52,7 +53,9 @@ app.set('view engine', 'handlebars')
 app.set('views', __dirname+'/views')
 app.use(express.static(__dirname + '/public'))
 
+
 routes(app) 
+
 
 const httpServer = app.listen(port, () => {
     console.log(`Servidor en el puerto ${port}`)
