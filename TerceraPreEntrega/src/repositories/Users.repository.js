@@ -10,17 +10,15 @@ class UserRepository {
           return await this.UserDAO.getAll()   
         } catch (error) {
           throw error
-
         }
-
     }
 
     async create(user) {
         try {
-           const newUserInfo = new UserDTO(user)
-           return await this.UserDAO.create(newUserInfo)
+          const newUserInfo = new UserDTO(user)
+          return await this.UserDAO.create(newUserInfo)
         } catch (error) {
-
+          return (error)
         }
     }
 }

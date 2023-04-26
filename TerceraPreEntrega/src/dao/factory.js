@@ -8,8 +8,9 @@ const { persistence } = config.app;
 let ProductDAO;
 let CartDAO;
 let UserDAO;
+let TicketDAO;
 
-console.log('En Factory')
+console.log('Setting Persistence in Factory...')
 
 switch (persistence) {
     case 'MONGO':
@@ -24,6 +25,9 @@ switch (persistence) {
 
         const UserManager = require('./dbManagers/user.dbManager.js');
         UserDAO = new UserManager();
+
+        const TicketDbManager = require('./dbManagers/ticket.dbManager.js')
+        TicketDAO = new TicketDbManager();
 
         console.log('MongoDB as storage persistence');
         break;
@@ -45,4 +49,4 @@ switch (persistence) {
         break;
 }
 
-module.exports = { ProductDAO, CartDAO, UserDAO }
+module.exports = { ProductDAO, CartDAO, UserDAO, TicketDAO }

@@ -1,11 +1,11 @@
 const { Router, response } = require('express')
 const fs = require('fs')
-//const CartManager = require('../CartManager.js');
-const CartDbManager = require('../dao/dbManagers/carts.dbManager')
+
+const { CartDAO } = require('../dao/factory')
 const router = Router()
 
-//const cart = new CartManager("./");
-const cart = new CartDbManager();
+const cart = CartDAO;
+
 // Get all Carts in file
 router.get('/', async (req, res) => {
   try {

@@ -21,22 +21,16 @@ router.get('/chat', async (req, res)=> {
 
 });
 
-
 router.post('/', (req, res) => {
      socket.emit('newProduct', product)
         const product = {
             title: "Mate",
             price:  "123",
             description: "Funko POP",
-            
-
         }
-
-     
-    
-    
+ 
     res.render('index.handlebars', { product, style: 'index.css' })
-    })
+})
     
 
 
