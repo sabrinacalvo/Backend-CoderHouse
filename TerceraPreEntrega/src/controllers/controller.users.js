@@ -10,7 +10,7 @@ const router = Router()
 router.get('/', async (req, res) => {
   try {
     const users = await usersService.getAll()
-    console.log('hole users')
+    console.log('hi users')
 
     res.json({ status: 'success', message: users })
   } catch (error) {

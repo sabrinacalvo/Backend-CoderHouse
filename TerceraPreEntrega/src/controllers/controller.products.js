@@ -3,6 +3,7 @@ const fs = require('fs')
 
 const { ProductDAO } = require('../dao/factory.js')
 const productModel = require('../dao/models/products.model')
+const generateProduct = require('../utils/mock.utils.js')
 const router = Router()
 
 const pm1 = ProductDAO;
@@ -14,6 +15,12 @@ router.get('/', async (req, res) => {
   res.json( productsList )
 
 })
+
+router.get('/faker', async (req, res) => {
+  const product = generateProduct()
+  res.json({ message: product })
+})
+
 
 router.get('/filter', async (req, res) => {
   const limit = parseInt(req.query.limit) || 10;

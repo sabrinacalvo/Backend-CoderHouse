@@ -2,7 +2,7 @@ const Users = require("../models/user.model.js");
 
 class UserManager {
     constructor(){
-        console.log('se creo el user')
+        
     }
     async getAll() {
       try {
