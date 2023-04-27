@@ -1,5 +1,5 @@
 const { Router } = require ('express')
-const { generateProduct } = require ('../utils/mock.utils')
+const generateProduct  = require ('../utils/mock.utils')
 
 const router = Router();
 

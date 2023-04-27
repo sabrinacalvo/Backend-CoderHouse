@@ -7,6 +7,7 @@ const viewsTemplateController = require('../controllers/controller.viewsTemplate
 const usersController = require('../controllers/controller.users')
 const authController = require('../controllers/controller.auth')
 const tickets = require('../controllers/controller.tickets')
+const mocking = require('../controllers/controller.mocking')
 
 const routes = (app) => {
   app.use('/', viewsController)
@@ -18,6 +19,7 @@ const routes = (app) => {
   app.use('/',viewsTemplateController)
   app.use('/users', usersController)
   app.use('/auth', authController)
+  app.use('/mockingproducts', mocking )
 }
 
 
