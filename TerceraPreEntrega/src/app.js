@@ -13,13 +13,15 @@ const FileStore = require('session-file-store')
 const MongoStore = require('connect-mongo')
 const passport = require('passport')
 const initializePassport = require('./config/passport.config')
-
+const {addLogger} = require('../src/utils/logger.js')
+const errorHandler = require ('./middlewares/errors/handler.errors.js')
 
 const {port} = config.app
 
 const fileStore = FileStore(session)
 
 const app = express();
+
 
 app.use(express.json()); 
 app.use(express.static(__dirname +  '/public'))
@@ -41,6 +43,11 @@ initializePassport()
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use(addLogger)
+app.use(errorHandler);
+
+
+
 
   // mongoose.set("strictQuery", false);
   // const connection = mongoose.connect(
@@ -55,6 +62,11 @@ app.use(express.static(__dirname + '/public'))
 
 
 routes(app) 
+
+app.get('/logger', (req, res) => {
+  req.logger.warn('Alerta')
+  res.send({message:"Prueba logger"})
+})
 
 
 const httpServer = app.listen(port, () => {

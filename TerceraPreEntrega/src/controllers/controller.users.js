@@ -4,8 +4,12 @@ const User = require('../dao/models/user.model')
 const { createHash } = require('../utils/cryptPassword')
 const usersService = require('../repositories/index')
 const UserDTO = require('../DTOs/User.dto')
+const CustomError = require('../utils/errors/Custom.error')
+const {generateUserErrorInfo} = require('../utils/errors/info.error')
+const EnumError = require('../utils/errors/enums.error')
 
 const router = Router()
+const users = []
 
 router.get('/', async (req, res) => {
   try {
@@ -18,18 +22,52 @@ router.get('/', async (req, res) => {
   }
 })
 
+//Manejo de Errores
 
 router.post('/', async (req, res) => {
-  try {
-    const user = req.body
+  const { first_name, last_name, age, email, password } = req.body;
+  if(!first_name || !last_name || !age || !email || !password) {
+      CustomError.createError({
+          name: 'User creation error',
+          cause: generateUserErrorInfo({first_name, last_name, age, email}),
+          message: 'Error trying to create user',
+          code: EnumError.INVALID_TYPES_ERROR,
+      });
+  };
+  
+  const newUserInfo = {
+      first_name,
+      last_name,
+      age,
+      email,
+      
+  };
 
-    const newUser = await usersService.create(user)
-
-    res.json({ status: 'success', message: newUser })
-  } catch (error) {
-    res.json({ status: 'error', error })
+  if (users.length === 0) {
+    user.id = 1
+  } else {
+    user.id = users[users.length - 1].id + 1
   }
+
+  users.push(user)
+
+  res.json({ message: user })
 })
+
+
+
+// router.post('/', async (req, res) => {
+//   try {
+//     const user = req.body
+
+//     const newUser = await usersService.create(user)
+
+//     res.json({ status: 'success', message: newUser })
+//   } catch (error) {
+//     res.json({ status: 'error', error })
+//   }
+// })
+
 
 // router.post('/auth', passport.authenticate('register', { failureRedirect: '/failRegister'}),
 //  async (req, res) => {

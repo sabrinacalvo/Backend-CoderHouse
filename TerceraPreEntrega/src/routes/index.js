@@ -20,6 +20,7 @@ const routes = (app) => {
   app.use('/users', usersController)
   app.use('/auth', authController)
   app.use('/mockingproducts', mocking )
+  
 }
 
 
