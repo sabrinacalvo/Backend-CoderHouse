@@ -3,12 +3,15 @@ const dotenv = require('dotenv')
 
 dotenv.config({
     path: `./.env.${process.env.NODE_ENV}`,
+    
 })
+
 
 const config = {
     app: {
         port: process.env.PORT || 8080,
-        persistence: process.env.PERSISTENCE
+        persistence: process.env.PERSISTENCE,
+        environment: process.env.NODE_ENV || 'development',
     },
     db: {
         userDB: process.env.USER_DB,

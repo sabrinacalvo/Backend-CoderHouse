@@ -13,14 +13,33 @@ const users = []
 
 router.get('/', async (req, res) => {
   try {
-    const users = await usersService.getAll()
-    console.log('hi users')
+  if (Object.entries(req.query).length === 0)
+  req.logger.warning('La request no trajo queries')
 
-    res.json({ status: 'success', message: users })
+  res.json({message: 'Hi'})
   } catch (error) {
-    res.json({ status: 'error', error })
+    console.error(error)
   }
 })
+
+
+
+router.get('/easy', (req, res) => {
+  let suma = 0
+  for (let i = 0; i < 1000000; i++) {
+    suma += i;
+  }
+  res.json({ suma })
+})
+
+router.get('/hard', (req, res) => {
+  let suma = 0
+  for (let i = 0; i < 5e8; i++) {
+    suma += i;
+  }
+  res.json({ suma })
+})
+
 
 //Manejo de Errores
 
@@ -67,6 +86,8 @@ router.post('/', async (req, res) => {
 //     res.json({ status: 'error', error })
 //   }
 // })
+
+
 
 
 // router.post('/auth', passport.authenticate('register', { failureRedirect: '/failRegister'}),

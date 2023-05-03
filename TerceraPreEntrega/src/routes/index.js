@@ -8,6 +8,7 @@ const usersController = require('../controllers/controller.users')
 const authController = require('../controllers/controller.auth')
 const tickets = require('../controllers/controller.tickets')
 const mocking = require('../controllers/controller.mocking')
+const sessionsController = require('../controllers/controller.sessions')
 
 const routes = (app) => {
   app.use('/', viewsController)
@@ -20,6 +21,9 @@ const routes = (app) => {
   app.use('/users', usersController)
   app.use('/auth', authController)
   app.use('/mockingproducts', mocking )
+  app.use('/api/sessions', sessionsController)
+ 
+
   
 }
 

@@ -13,8 +13,9 @@ const FileStore = require('session-file-store')
 const MongoStore = require('connect-mongo')
 const passport = require('passport')
 const initializePassport = require('./config/passport.config')
-const {addLogger} = require('../src/utils/logger.js')
 const errorHandler = require ('./middlewares/errors/handler.errors.js')
+const addLogger = require('../src/middlewares/logger.middlewares.js')
+const { faker } = require('@faker-js/faker')
 
 const {port} = config.app
 
@@ -67,6 +68,16 @@ app.get('/logger', (req, res) => {
   req.logger.warn('Alerta')
   res.send({message:"Prueba logger"})
 })
+
+//Este endpoint sirve para poder crear el usuario virtual con variables para utilizar en el resto de endpoints
+app.get('/api/test/user',(req,res)=>{
+  let first_name = faker.name.firstName();
+  let last_name = faker.name.lastName();
+  let email = faker.internet.email();
+  let password =  faker.internet.password();
+  res.send({first_name,last_name,email,password})
+})
+
 
 
 const httpServer = app.listen(port, () => {

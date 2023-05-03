@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "artillery-plugin-metrics-by-endpoint": "^1.0.2",
     "bcrypt": "^5.1.0",
     "colors": "^1.4.0",
     "connect-mongo": "^4.6.0",
@@ -38,6 +39,7 @@
   },
   "description": "",
   "devDependencies": {
-    "@faker-js/faker": "^7.6.0"
+    "@faker-js/faker": "^7.6.0",
+    "artillery": "^2.0.0-26"
   }
 }
