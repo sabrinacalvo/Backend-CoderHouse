@@ -16,13 +16,13 @@ const transporter = nodemailer.createTransport({
 
 const sendEmail = async (to, subject, message) => {
     const html = `
-        <h4 style="font-size: 12px; font-family: sans-serif;  text-align: center;">
+        <div>
             ${message}
-        </h4>
+        </div>
     `
 
     const options = {
-        from: `"Forgot password 👻" <calvo.sabrinas@gmail.com>`,
+        from: `"Forgot password👻" <calvo.sabrinas@gmail.com>`,
         to,
         subject,
         html
@@ -36,8 +36,5 @@ transporter.verify((err, success) => {
     console.log('Your config is correct');
 })
 
-// transporter.verify().then(() => {
-//     console.log('Ready for send emails')
-// })
 
 module.exports = sendEmail;
