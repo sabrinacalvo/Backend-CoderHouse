@@ -1,8 +1,11 @@
 const nodemailer = require("nodemailer");
 
-const email = require("../config/index");
+const config  = require("../config/index");
 
-const transport = nodemailer.createTransport({
+const email = config.email
+console.log(email)
+
+const transporter = nodemailer.createTransport({
     service: email.EMAIL_SERVICE,
     port: email.EMAIL_PORT,
     auth: {
@@ -25,11 +28,16 @@ const sendEmail = async (to, subject, message) => {
         html
     }
 
-    return await transport.sendMail(options);
+    return await transporter.sendMail(options);
 }
 
-transport.verify().then(() => {
-    console.log('Ready for send emails')
+transporter.verify((err, success) => {
+    if (err) console.error(err);
+    console.log('Your config is correct');
 })
+
+// transporter.verify().then(() => {
+//     console.log('Ready for send emails')
+// })
 
 module.exports = sendEmail;

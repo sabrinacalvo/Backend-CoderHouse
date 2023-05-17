@@ -4,8 +4,8 @@ class UserDTO {
       this.lastname = user.last_name
       this.active = true
       this.phone = user.phone ? user.phone.split('-').join('') : ''
-      this.email = info.email
-      this.password = info.password
+      this.email = user.email
+      this.password = user.password
     }
   }
   

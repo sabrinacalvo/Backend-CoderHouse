@@ -10,6 +10,13 @@ const {port} = config.app
 
 const router = Router()
 
+router.get('/', async (req, res) => {
+  console.log('Auth')
+  res.json({ message: 'auth' })
+}
+
+)
+
 router.post(
   '/',
   passport.authenticate('login', { failureRedirect: '/failLogin' }),
@@ -118,7 +125,7 @@ router.patch('/forgotPassword', async (req, res) => {
 });
 
 
-router.get('/restorePassword'), async (req, res) => {
+router.post('/restorePassword', async (req, res, next) => {
   const { to } = req.body;
 
   if(!to) return res.status(400).json({ status: 400, ok: false, response: "Invalid request." });
@@ -137,11 +144,11 @@ router.get('/restorePassword'), async (req, res) => {
           </p>
           `
       );
-      res.status(200).json({ status: 200, ok: false, response: "Email sent." });
+      res.status(200).json({ status: 200, ok: false, response: "Email sent" });
   }catch(error){
-      next(error);
+       next(error)
   }
-}
+})
 
 router.post("/restorePassword/:token", authToken, async (req, res, next) => {
   const { password } = req.body;    
@@ -155,7 +162,7 @@ router.post("/restorePassword/:token", authToken, async (req, res, next) => {
       if(!isValidToken(token)) return res.status(400).json({ status: 400, ok: false, response: "Invalid token." });
         res.status(200).json({ status: 200, ok: true, response: token });
   }catch(error){
-      next(error);
+      next(error)
   }
 })
 
