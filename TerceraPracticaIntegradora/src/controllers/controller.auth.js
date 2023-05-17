@@ -4,7 +4,7 @@ const passport = require('passport')
 const User = require('../dao/models/user.model')
 const { isValidPassword, createHash } = require('../utils/cryptPassword')
 const { generateToken, authToken, isValidToken } = require('../utils/jwt.utils')
-const sendEmail = require("../utils/email");
+const sendMail = require("../utils/email");
 
 const {port} = config.app
 
@@ -133,7 +133,7 @@ router.post('/restorePassword', async (req, res, next) => {
   const token = generateToken(to);
 
   try {
-      const res = await sendEmail(
+      const res = await sendMail(
         to,
           "Restore password",
           `
@@ -143,9 +143,9 @@ router.post('/restorePassword', async (req, res, next) => {
               Please don't reply this email.
           </p>
           `
-      );
-      res.status(200).json({ status: 200, ok: false, response: "Email sent" });
-  }catch(error){
+      )
+      return res.status(200).json({ status: 200, ok: false, response: "Email sent" });
+     }catch(error){
        next(error)
   }
 })

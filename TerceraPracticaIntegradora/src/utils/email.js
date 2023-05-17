@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-const sendEmail = async (to, subject, message) => {
+const sendMail = async (to, subject, message) => {
     const html = `
         <div>
             ${message}
@@ -37,4 +37,4 @@ transporter.verify((err, success) => {
 })
 
 
-module.exports = sendEmail;
+module.exports = sendMail;
