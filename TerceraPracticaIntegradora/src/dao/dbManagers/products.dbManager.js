@@ -71,6 +71,11 @@ class ProductDbManager {
     let result = await productsModel.deleteOne({ _id: id });
     return result;
   };
+
+  deleteAll = async () => {
+    let result = await productsModel.deleteMany();
+    return result;
+  };
 }
 
 module.exports = ProductDbManager

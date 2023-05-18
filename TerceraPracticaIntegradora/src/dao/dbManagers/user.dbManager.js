@@ -50,7 +50,7 @@ class UserManager {
         const update = {...user._doc, role: user._doc.role === "user" ? "premium" : "user" };
         await Users.updateOne({ _id: id }, update);
         return update;
-    }
+    }
 
 };
 

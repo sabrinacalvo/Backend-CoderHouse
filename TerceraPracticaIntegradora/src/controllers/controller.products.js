@@ -107,4 +107,24 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/:id", async(req,res) => {
+  
+  if(req.user.role !== "admin") return res.status(403).json({ status: 404, ok: false, response: "Can't delete diff role." });
+
+  try{
+    const response = await pm1.deleteProduct(req.params.id)
+  } catch{
+    res.status(200).json({ status: 200, ok: true, response });
+  }
+
+})
+
+router.delete("/", async (req,res) => {
+  if(req.user.role !== "admin") return res.status(403).json({ status: 404, ok: false, response: "Can't delete diff role." });
+  try {
+    const response = await pm1.deleteAll()
+  }catch{
+    res.status(200).json({ status: 200, ok: true, response });
+  }
+})
 module.exports = router

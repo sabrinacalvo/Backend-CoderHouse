@@ -25,6 +25,10 @@ router.get('/forgotpassword', async (req, res) => {
     res.render('forgotpassword')
 })
 
+router.get('/newpassword/:token', async (req, res) => {
+    res.render('newpassword')
+})
+
 router.post('/', (req, res) => {
      socket.emit('newProduct', product)
         const product = {

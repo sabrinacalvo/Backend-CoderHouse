@@ -111,18 +111,19 @@ router.get('/google/callback',
    })
 })
 
-router.get('/github', passport.authenticate('gitbu'))
+router.get('/github', passport.authenticate('github'))
 
-router.patch('/forgotPassword', async (req, res) => {
-  try {
-    const { email, password } = req.body;
 
-    const passwordEncrypted = createHash(password);
-    await User.updateOne({ email }, { password: passwordEncrypted });
+// router.patch('/forgotPassword', async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
 
-    res.json({ message: 'Contraseña actualizada' });
-  } catch (error) {}
-});
+//     const passwordEncrypted = createHash(password);
+//     await User.updateOne({ email }, { password: passwordEncrypted });
+
+//     res.json({ message: 'Contraseña actualizada' });
+//   } catch (error) {}
+// });
 
 
 router.post('/restorePassword', async (req, res, next) => {
@@ -138,7 +139,7 @@ router.post('/restorePassword', async (req, res, next) => {
           "Restore password",
           `
           <div>
-              Link to reset your password <a href="https://localhost:${port}/auth/restorePassword/${token}" target="_blank">this link</a> <br/>
+              Link to reset your password <a href="http://localhost:${port}/newpassword/${token}" target="_blank">this link</a> <br/>
               Remember that you only have 60 min before token expires.<br/>
               Do not reply this email.
           </div>
@@ -151,13 +152,13 @@ router.post('/restorePassword', async (req, res, next) => {
   }
 })
 
-router.post("/restorePassword/:token", authToken, async (req, res, next) => {
-  const { password } = req.body;    
+router.get("/restorePassword/:token", async (req, res, next) => {
+  // const { password } = req.body;    
   const { token } = req.params;
 
-  if(!password) return res.status(400).json({ status: 400, ok: false, response: "Invalid request." });
+  // if(!password) return res.status(400).json({ status: 400, ok: false, response: "Invalid request." });
 
-  if(isValidPassword(req.user, password)) return res.status(400).json({ status: 400, ok: false, response: "Password can't be equal to current password."});
+  // if(isValidPassword(req.user, password)) return res.status(400).json({ status: 400, ok: false, response: "Password can't be equal to current password."});
 
   try{
       if(!isValidToken(token)) return res.status(400).json({ status: 400, ok: false, response: "Invalid token." });
