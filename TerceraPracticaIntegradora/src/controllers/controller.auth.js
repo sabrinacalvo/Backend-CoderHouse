@@ -126,24 +126,25 @@ router.patch('/forgotPassword', async (req, res) => {
 
 
 router.post('/restorePassword', async (req, res, next) => {
-  const { to } = req.body;
+  const { email } = req.body;
 
-  if(!to) return res.status(400).json({ status: 400, ok: false, response: "Invalid request." });
+  if(!email) return res.status(400).json({ status: 400, ok: false, response: "Invalid request." });
 
-  const token = generateToken(to);
+  const token = generateToken(email);
 
   try {
-      const res = await sendMail(
-        to,
+      const aux = await sendMail(
+        email,
           "Restore password",
           `
-          <p style="text-align: center;">
-              Access to <a href="https://localhost:${port}/auth/restorePassword/confirm/${token}" target="_blank">this link</a> to restore your password.<br/>
-              Remember that you only have 5 min before token expires.<br/>
-              Please don't reply this email.
-          </p>
+          <div>
+              Link to reset your password <a href="https://localhost:${port}/auth/restorePassword/${token}" target="_blank">this link</a> <br/>
+              Remember that you only have 60 min before token expires.<br/>
+              Do not reply this email.
+          </div>
           `
       )
+       
       return res.status(200).json({ status: 200, ok: false, response: "Email sent" });
      }catch(error){
        next(error)

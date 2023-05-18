@@ -21,6 +21,10 @@ router.get('/chat', async (req, res)=> {
 
 });
 
+router.get('/forgotpassword', async (req, res) => {
+    res.render('forgotpassword')
+})
+
 router.post('/', (req, res) => {
      socket.emit('newProduct', product)
         const product = {

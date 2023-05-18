@@ -1,4 +1,4 @@
-const form = document.getElementById('forgotPasswordForm');
+const form = document.getElementById('forgotpassword');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -8,11 +8,11 @@ form.addEventListener('submit', e => {
 
   data.forEach((value, key) => (obj[key] = value));
 
-  const url = '/auth/forgotPassword';
+  const url = '/auth/restorePassword';
   const headers = {
     'Content-Type': 'application/json',
   };
-  const method = 'PATCH';
+  const method = 'POST';
   const body = JSON.stringify(obj);
 
   fetch(url, {
