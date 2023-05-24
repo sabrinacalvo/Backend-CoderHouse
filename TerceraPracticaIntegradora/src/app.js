@@ -16,6 +16,8 @@ const initializePassport = require('./config/passport.config')
 const errorHandler = require ('./middlewares/errors/handler.errors.js')
 const addLogger = require('../src/middlewares/logger.middlewares.js')
 const { faker } = require('@faker-js/faker')
+const swaggerJsdoc = require('swagger-jsdoc')
+const swaggerUiexpress = require('swagger-ui-express')
 
 const {port} = config.app
 
@@ -40,6 +42,25 @@ app.use(session({
   saveUninitialized: false
 }))
 
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.1",
+    info: {
+      title: 'Documentacion de Adoptme',
+      description: 'Encontraras los métodos necesarios para trabajar con la API',
+    },
+  },
+
+  apis: [`${__dirname}/docs/**/*.yaml`],
+}
+const specs = swaggerJsdoc(swaggerOptions)
+
+app.use('/apidocs', swaggerUiexpress.serve, swaggerUiexpress.setup(specs))
+
+
+
+
+
 initializePassport()
 app.use(passport.initialize())
 app.use(passport.session())
@@ -63,6 +84,8 @@ app.use(express.static(__dirname + '/public'))
 
 
 routes(app) 
+
+
 
 app.get('/logger', (req, res) => {
   req.logger.warn('Alerta')
