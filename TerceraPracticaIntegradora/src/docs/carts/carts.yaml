@@ -1,0 +1,137 @@
+openapi: "3.0.1"
+info:
+  title: API de productos
+  version: "1.0"
+paths:
+  /api/carts/:
+    get:
+      summary: Se obtienen todos los carritos incluidos en el carrito actual de la base de datos. 
+      tags:
+        - "Carts"
+      responses: 
+        "200":
+          description: Obtiene todos los carritos
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#components/schemas/Carts'
+        "500": 
+          description: Error al acceder al carrito.
+     
+    post:
+      summary: Crea un carrito en la base de datos.
+      tags:
+       - "Carts"
+      responses:
+        "200":
+          description: El carrito se creo en la base de datos.
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Carts'
+        "500":
+          description: Error del servidor al crear el carrito en la base de datos.
+
+  /api/carts/{cid}:
+    get:
+      summary: Obtiene el carrito con el Id
+      tags:
+        - "Carts"
+      parameters: 
+      - name: cid
+        required: true
+        description: Id del carrito a buscar
+        schema:
+          $type: string 
+      responses:
+        "200":
+          description:
+          content:
+            application/json:
+              schema:
+                type: object
+                items: 
+                  $ref: '#components/schemas/carts'
+        "404":
+          description: Id has to be a number.
+        "500":
+          description: Servidor no puede encontrar el Carrito.
+
+    delete:
+      summary: Elimina un carrito segun el cid
+      tags:
+       - "Carts"
+      parameters: 
+      - cartId: cid
+        in: path
+        required: true
+        description: Id del carrito 
+        schema:
+          $type: string 
+      responses:
+        "200":
+          description: Se elimina el carrito.
+        "500":
+          description: No se pudo eliminar el carrito o no se encontro en la DB.
+
+
+  /api/carts/{cid}/product/{pid}:
+    post:
+      summary: Agrega un producto al carrito. 
+      tags: 
+        - "Carts"
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: Id del carrito donde agregar el producto. 
+        schema:
+          $type: string
+      - name: pid
+        in: path
+        required: true
+        description: Id del producto a agregar al carrito. 
+        schema:
+          type: string
+      responses:
+        "200": 
+          description: El producto se agrego al carrito.
+          content:
+            application/json:
+              schema:
+                type: string
+        "400":
+          description: Bad request.
+        "500":
+          description: Server no puede encontrar el ID del carrito o producto.
+
+components:
+  schemas:
+    Carts:
+      type: object
+      properties:
+        _id:
+          type: objectId
+          description: Id de MongoDB.
+        products:
+          type: array
+          description: Lista de los productos dentro del carrito.
+      example:
+        _id: ObjectId('111111abchoy11112')
+        products: []
+  requestBodies:
+    updateCart:
+      type: object
+      properties:
+        products:
+          type: array
+          description: Arreglo de productos del carrito.
+      example:
+        products : [
+          product: ObjectId("1111aaabchoy11"),
+          quantity: 30
+        ]
+  
+
