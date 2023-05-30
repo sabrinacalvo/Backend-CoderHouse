@@ -1,5 +1,7 @@
 const Users = require("../models/user.model.js");
 
+
+
 class UserManager {
     constructor(){
         
@@ -52,6 +54,21 @@ class UserManager {
         return update;
     }
 
+    getBy = (params) =>{
+        return Users.findOne(params);
+    }
+
+    save = (doc) =>{
+        return Users.create(doc);
+    }
+
+    update = (id,doc) =>{
+        return Users.findByIdAndUpdate(id,{$set:doc})
+    }
+
+    delete = (id) =>{
+        return Users.findByIdAndDelete(id);
+    }
 };
 
 module.exports = UserManager;

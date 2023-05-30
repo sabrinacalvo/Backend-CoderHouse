@@ -5,7 +5,8 @@
   "scripts": {
     "start:dev": "NODE_ENV=development nodemon src/app.js",
     "start": "NODE_ENV=production nodemon src/app.js",
-    "deleteUsers": "node deleteUsers.js"
+    "deleteUsers": "node deleteUsers.js",
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
@@ -44,6 +45,7 @@
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
     "artillery": "^2.0.0-26",
+    "chai": "^4.3.7",
     "mocha": "^10.2.0"
   }
 }
