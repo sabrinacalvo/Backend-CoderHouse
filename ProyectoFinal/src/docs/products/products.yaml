@@ -1,0 +1,223 @@
+openapi: "3.1.0"
+info:
+  title: API Products
+  version: "1.0"
+paths:
+  /api/products/:
+    get:
+      summary: Obtener todos los productos
+      tags:
+        - "Products"
+      responses: 
+        "200":
+          description: Todos los productos fueron obtenidos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Products"
+        "400":
+          description: Bad request
+        "500":
+          description: Internal server error
+
+    post:
+      summary: Agrega un producto nuevo
+      tags:
+        - "Products"
+      parameters:
+      - title: string
+        description: string
+        price: number
+        stock: number
+        category: string
+        required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: string
+      responses:
+        "200":
+          description: Status [OK]
+        "400":
+          description: Fill all parameters
+        "404": 
+          description: Price/Stock deben ser numeros
+
+    delete:
+      summary: Elimina un producto por id
+      tags:
+        - "Products"
+      parameters: 
+        - name: id
+          in: path
+          required: true
+          description: Id del producto a eliminar.
+          schema:
+            $type: string 
+      responses:
+        "200":
+          description: Status OK. Eliminado 
+        "403":
+          description: Can't delete because of role.
+        "404":
+          description: Bad request.
+
+
+  /api/products/faker:
+    get:
+      summary: Generar productos de testing con Fake
+      tags:
+        - "Products"
+      responses: 
+        "200":
+          description: Todos los productos fake fueron obtenidos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Products"
+        "400":
+          description: Bad request
+        "500":
+          description: Internal server error
+
+  /api/products/filter:
+    get:
+      summary: Obtiene los productos filtrados bajo criterios
+      tags:
+        - "Products"
+      parameters:
+      - limit: number
+        page: number
+        query: null
+        sort: null
+      responses: 
+        "200":
+          description: Todos los productos fake fueron obtenidos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Products"
+        "400":
+          description: Bad request
+        "500":
+          description: Error al acceder los productos
+
+  /api/products/{id}:
+    get:
+      summary: Obtener un producto con el Id
+      tags:
+        - "Products"
+      parameters:
+      - id: num
+      responses: 
+        "200":
+          description: El producto fue obtenido
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/Products"
+        "500":
+        description: No se puede encotrar el producto
+  
+  /api/products/loadProducts:
+    post:
+      summary: Cargar la DB con productos de un archivo Json
+      tags:
+        - "Products"
+      responses: 
+        "200":
+          description: Los productos fueron cargados en la DB
+        "400":
+          description: Bad request
+        "500":
+          description: Error al abrir el archivo Json
+
+  
+components:
+  schemas:
+   Products:
+    type: object
+    properties:
+      _id:
+        type: objectId
+        description: Id generado en MongoDB
+      name:
+        type: string
+        description: Titulo del producto
+      description:
+        type: string
+        description: Descripción del producto
+      category:
+        type: string
+        description: Categoría del producto
+      price:
+        type: number
+        description: Precio del producto
+      thumbnail:
+        type: string
+        description: URL de la imagen
+      stock:
+        type: number
+        description: Stock disponible del producto
+      owner:
+        type: string
+        description: Email del usuario que creo el producto. Default--> "admin"
+    example:
+      _id: ObjectId('71632871623817sadas65')
+      title: "Funko Pop! J-Hope Dynamite"
+      description: "J-HOPE #221 FUNKO POP! BTS DYNAMITE IMPORTADO"
+      category: funko
+      price: ARS 8999
+      thumbnail: "https://http2.mlstatic.com/D_NQ_NP_2X_911678-MLA47757680077_102021-F.webp"
+      stock: 20
+      owner: admin
+  requestBodies:
+    newProduct:
+      type: object
+      properties:
+        name:
+          type: string
+          description: titulo del producto
+          required: true
+        description:
+          type: string
+          description: Descripción del producto
+          required: true
+        category:
+          type: string
+          description: Categoría del producto
+          required: true
+        price:
+          type: number
+          description: Precio del producto
+          required: true
+        thumbnail:
+          type: string
+          description: Link a la imagen del producto
+        stock:
+          type: number
+          description: Cantidad de unidades en stock
+          required: true
+      example:
+        name: "Funko Pop! J-Hope Dynamite"
+        description: "J-HOPE #221 FUNKO POP! BTS DYNAMITE IMPORTADO"
+        category: funko
+        price: 8999
+        thumbnail: "https://http2.mlstatic.com/D_NQ_NP_2X_911678-MLA47757680077_102021-F.webp"
+        stock: 30
+  
+    
+
+
+
+    
