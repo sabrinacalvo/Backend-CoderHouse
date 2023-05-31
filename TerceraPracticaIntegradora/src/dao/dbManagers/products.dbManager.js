@@ -18,7 +18,7 @@ class ProductDbManager {
   }
 
   getProductsOld = async () => {
-    let products = await productsModel.find();
+    const products = await productsModel.find();
     return products.map((product) => product.toObject());
   };
 

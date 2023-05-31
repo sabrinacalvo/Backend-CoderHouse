@@ -73,39 +73,51 @@ try {
 });
 
 router.post("/", async (req, res) => {
-  let product = req.query;
-  if (
-    !product.title ||
-    !product.description ||
-    !product.price ||
-    !product.stock ||
-    !product.category
-  ) {
-    res.send({ status: 404, message: "Fill all params" });
-  } else {
-    if (!product.status) {
-      product.status = true;
-    } else {
-      product.status = product.status === "true";
-    }
-    if (!product.thumbnails) {
-      product.thumbnails = [];
-    } else {
-      product.thumbnails = [product.thumbnails];
-    }
-    product.price = parseInt(product.price);
-    product.stock = parseInt(product.stock);
-    if (isNaN(product.price) || isNaN(product.stock)) {
-      res.send({ status: 404, message: "Price and stock need to be numbers" });
-    } else {
-      let response = await pm.addProduct(product);
-      res.send({ status: 200, message: response });
-      let products = await pm.getProducts();
-      io.emit("products", products);
-      console.log(response);
-    }
-  }
-});
+  const {title,description,price} = req.body;
+  
+  if(!title||!description||!price) return res.status(400).send({status:"error",error:"Incomplete values"})
+ 
+  const product = new productModel({title,description,price});
+  
+  const result = await pm1.saveProduct(product);
+  
+  res.status(201).send({status:"success", payload:result})
+
+
+  // const product = req.query;
+  // console.log(product)
+  // if (
+  //   !product.title 
+  //   // !product.description ||
+  //   // !product.price ||
+  //   // !product.stock ||
+  //   // !product.category
+  // ) {
+  //   res.send({ status: 404, message: "Fill all params" });
+  // } else {
+  //   if (!product.status) {
+  //     product.status = true;
+  //   } else {
+  //     product.status = product.status === "true";
+  //   }
+  //   if (!product.thumbnails) {
+  //     product.thumbnails = [];
+  //   } else {
+  //     product.thumbnails = [product.thumbnails];
+  //   }
+  //   product.price = parseInt(product.price);
+  //   product.stock = parseInt(product.stock);
+  //   if (isNaN(product.price) || isNaN(product.stock)) {
+  //     res.send({ status: 404, message: "Price and stock need to be numbers" });
+  //   } else {
+  //     let response = await pm.addProduct(product);
+  //     res.send({ status: 200, message: response });
+  //     let products = await pm.getProducts();
+  //     io.emit("products", products);
+  //     console.log(response);
+  //   }
+  // }
+})
 
 router.delete("/:id", async(req,res) => {
   

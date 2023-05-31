@@ -19,7 +19,7 @@ const { faker } = require('@faker-js/faker')
 const swaggerJsdoc = require('swagger-jsdoc')
 const swaggerUiexpress = require('swagger-ui-express')
 
-const {port} = config.app
+const {port} = config.app || 8080
 
 const fileStore = FileStore(session)
 
