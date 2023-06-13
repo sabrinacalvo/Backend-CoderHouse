@@ -7,7 +7,8 @@
       "price": "ARS 8,499",
       "stock": 100,
       "available": true,
-      "category": "funko"
+      "category": "funko",
+      "pcode": "prdW07"
     },
     {
       "id": 2,
@@ -17,7 +18,8 @@
       "price": "ARS 8,999",
       "stock": 100,
       "available": true,
-      "category": "funko"
+      "category": "funko",
+      "pcode": "prd5245"
       
     },
     {
@@ -28,7 +30,8 @@
       "price": "ARS 7,999",
       "stock": 100,
       "available": true,
-      "category": "funko"
+      "category": "funko",
+      "pcode": "prdN854"
       
     },
     {
@@ -39,8 +42,8 @@
       "price": "ARS 9,895",
       "stock": 100,
       "available": true,
-      "category": "funko"
-      
+      "category": "funko",
+      "pcode": "prdX775"
     },
     {
       "id": 5,
@@ -50,8 +53,8 @@
       "price": "ARS 7,990",
       "stock": 100,
       "available": true,
-      "category": "funko"
-      
+      "category": "funko",
+      "pcode": "prd4465"      
     },
     {
       "id": 6,
@@ -61,8 +64,8 @@
       "price": "ARS 11,600",
       "stock": 100,
       "available": true,
-      "category": "funko"
-      
+      "category": "funko",
+      "pcode": "prdT679"
     },
     {
       "id": 7,
@@ -72,8 +75,8 @@
       "price": "ARS 13,700",
       "stock": 100,
       "available": true,
-      "category": "funko"
-      
+      "category": "funko",
+      "pcode":"prd5839"      
     },
     {
       "id": 8,
@@ -83,8 +86,8 @@
       "price": "ARS 9,999",
       "stock": 100,
       "available": true,
-      "category": "funko"
-      
+      "category": "funko",
+      "pcode": "prdC336"
     },
     {
       "id": 9,
@@ -94,8 +97,8 @@
       "price": "ARS 7,900",
       "stock": 100,
       "available": true,
-      "category": "funko"
-     
+      "category": "funko",
+      "pcode": "prdA536"     
     },
     {
       "id": 10,
@@ -105,8 +108,8 @@
       "price": "ARS 11,600",
       "stock": 100,
       "available": true,
-      "category": "funko"
-      
+      "category": "funko",
+      "pcode":"prdN525"      
     },
     {
       "id": 11,
@@ -116,8 +119,8 @@
       "price": "ARS 3149",
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-     
+      "category": "t-shirt",
+      "pcode": "prdW527"     
     },
     {
       "id": 12,
@@ -127,8 +130,8 @@
       "price": "ARS 3149",
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode": "prdN343"      
     },
     {
       "id": 13,
@@ -138,8 +141,8 @@
       "price": "ARS 3149",
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode": "prdY798"      
     },
     {
       "id": 14,
@@ -149,30 +152,30 @@
       "price": "ARS 3149",
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode": "prdT472"      
     },
     {
       "id": 15,
       "title": "Remeras Adulto Bts K-pop 100% Algodón", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_944792-MLA51714830044_092022-F.webp", 
       "description": "Remeras Adulto Bts K-pop 100% Algodón",
-      "price": "ARS 3149",
+      "price": "ARS 3159",
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-     
+      "category": "t-shirt",
+      "pcode": "prdR776"     
     },
     {
       "id": 16,
       "title": " Remeras Adulto Bts K-pop 100% Algodón", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_733692-MLA51714713655_092022-F.webp", 
       "description": "Remeras Adulto Bts K-pop 100% Algodón",
-      "price": "ARS 3149",
+      "price": "ARS 149",
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode": "prdA663"      
     },
     {
       "id": 17,
@@ -182,8 +185,8 @@
       "price": "ARS 2500",
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode":"prdW333"      
     },
     {
       "id": 18,
@@ -193,8 +196,8 @@
       "price": "ARS 2800",
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode": "prdM345"      
     },
     {
       "id": 19,
@@ -204,8 +207,8 @@
       "price": "ARS 1790",
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode": "prdE899"      
     },
     {
       "id": 20,
@@ -215,8 +218,8 @@
       "price": "ARS 2,752",
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode": "prdG527"      
     },
     {
       "id": 21,
@@ -226,8 +229,8 @@
       "price": "ARS 1,800",
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdT478"      
     },
     {
       "id": 22,
@@ -237,8 +240,8 @@
       "price": "ARS 1,800",
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdB472"      
     },
     {
       "id": 23,
@@ -248,8 +251,8 @@
       "price": "ARS 1,800",
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdS534"      
     },
     {
       "id": 24,
@@ -259,8 +262,8 @@
       "price": "ARS 1,800",
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdE572"      
     },
     {
       "id": 25,
@@ -270,8 +273,8 @@
       "price": "ARS 1,800",
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdC487"      
     },
     {
       "id": 26,
@@ -281,8 +284,8 @@
       "price": "ARS 1,800",
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prd7446"      
     },
     {
       "id": 27,
@@ -292,8 +295,8 @@
       "price": "ARS 1,775",
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdJ965"      
     },
     {
       "id": 28,
@@ -303,8 +306,8 @@
       "price": "ARS 1,800",
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prd4966"      
     },
     {
       "id": 29,
@@ -314,8 +317,8 @@
       "price": "ARS 1,699",
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdE992"      
     },
     {
       "id": 30,
@@ -325,8 +328,8 @@
       "price": "ARS 548",
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdF763"      
     },
     {
       "id": 31,
@@ -336,7 +339,8 @@
       "price": "ARS 8,294",
       "stock": 2,
       "available": true,
-      "category": "cd"      
+      "category": "cd",
+      "pcode": "prdY488"      
     },
       {
       "id": 32,
@@ -346,8 +350,8 @@
       "price": "ARS 29,163",
       "stock": 1,
       "available": true,
-      "category": "cd"  
-      
+      "category": "cd",
+      "pcode": "prdA925"      
     },
     {
       "id": 33,
@@ -357,8 +361,8 @@
       "price": "ARS 24.080",
       "stock": 100,
       "available": true,
-      "category": "cd"  
-      
+      "category": "cd",
+      "pcode": "prd9349"      
     },
     {
       "id": 34,
@@ -368,8 +372,8 @@
       "price": "ARS 20,474",
       "stock": 100,
       "available": true,
-      "category": "cd"  
-      
+      "category": "cd",
+      "pcode": "prd7527"      
     },
     {
       "id": 35,
@@ -379,8 +383,8 @@
       "price": "ARS 71,871",
       "stock": 100,
       "available": true,
-      "category": "cd"  
-      
+      "category": "cd",
+      "pcode": "prdA633"     
     },
     {
       "id": 36,
@@ -390,8 +394,8 @@
       "price": "ARS 15,296",
       "stock": 100,
       "available": true,
-      "category": "cd" 
-     
+      "category": "cd",
+      "pcode": "prdN655"     
     }
   
   ]
