@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "NODE_ENV=development nodemon src/app.js",
-    "start": "export NODE_ENV='production' nodemon src/app.js",
+    "start": "NODE_ENV='production' nodemon src/app.js",
     "deleteUsers": "node deleteUsers.js",
     "test": "mocha"
   },
