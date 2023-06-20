@@ -20,7 +20,9 @@ router.get('/test',(req,res)=>{
   let password =  faker.internet.password();
   res.send({first_name,last_name,email,password})
 })
-
+router.get('/register', async (req,res) => {
+  res.status(200).json({message: 'POST IS REQUIRED'})
+})
 router.post('/register', async (req,res) => {
   const { first_name, last_name, email, password } = req.body;
   
