@@ -1,44 +1,60 @@
 const passport = require('passport');
 const local = require('passport-local');
+const jwt = require('passport-jwt')
+const config = require('../config/index')
 const GithubStrategy = require('passport-github2');
 const GoogleStrategy = require('passport-google-oauth20');
-const User = require('../dao/models/user.model');
-const { createHash, isValidPassword } = require('../utils/cryptPassword');
 
+const { isValidPassword } = require('../utils/cryptPassword');
+const cookieExtractor  = require('../utils/cookieExtractor.utils')
+const User = require('../dao/models/user.model');
 const LocalStrategy = local.Strategy;
+const JWTStrategy = jwt.Strategy;
+const ExtractJWT = jwt.ExtractJwt;
+
+const { jwt_secret_key } = config.app;
 
 const initializePassport = () => {
-  passport.use(
-    'register',
-    new LocalStrategy(
-      { passReqToCallback: true, usernameField: 'email' },
-      async (req, username, password, done) => {
-        const { first_name, last_name, email, age } = req.body;
-        try {
-          const user = await User.findOne({ email: username });
-
-          if (user) {
-            console.log('Usuario existe');
-            return done(null, false);
-          }
-
-          const newUserInfo = {
-            first_name,
-            last_name,
-            email,
-            age,
-            password: createHash(password),
-          };
-
-          const newUser = await User.create(newUserInfo);
-
-          return done(null, newUser);
-        } catch (error) {
-          return done(error);
-        }
-      }
-    )
+  passport.use('jwt', new JWTStrategy(
+    {jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]),
+    secretOrKey: jwt_secret_key,
+    }, async (jwt_payload, done) => {
+    try {
+        return done(null, jwt_payload);
+    } catch(error) {
+        return done(error);
+    }
+  })
   );
+
+  // passport.use('register', new LocalStrategy(
+  //     { passReqToCallback: true, usernameField: 'email' },
+  //     async (req, username, password, done) => {
+  //       const { first_name, last_name, email } = req.body;
+  //       try {
+  //         const user = await User.findOne({ email: username });
+
+  //         if (user) {
+  //           console.log('Usuario existe');
+  //           return done(null, false);
+  //         }
+
+  //         const newUserInfo = {
+  //           first_name,
+  //           last_name,
+  //           email,
+  //           password: createHash(password),
+  //         };
+
+  //         const newUser = await User.create(newUserInfo);
+
+  //         return done(null, newUser);
+  //       } catch (error) {
+  //         return done(error);
+  //       }
+  //     }
+  //   )
+  // );
 
   passport.serializeUser((user, done) => {
     done(null, user.id);

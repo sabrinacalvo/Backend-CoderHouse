@@ -1,9 +1,11 @@
 const { Router } = require('express')
 const fs = require('fs')
+const {authToken} = require('../utils/jwt.utils')
 
 const { ProductDAO } = require('../dao/factory.js')
 const productModel = require('../dao/models/products.model')
 const generateProduct = require('../utils/mock.utils.js')
+const handlePolicies = require('../middlewares/handlerPolicies.middleware')
 const router = Router()
 
 const pm1 = ProductDAO;
@@ -16,7 +18,7 @@ router.get('/', async (req, res) => {
 
 })
 
-router.get('/faker', async (req, res) => {
+router.get('/faker', authToken, async (req, res) => {
   const product = generateProduct()
   res.json({ message: product })
 })
@@ -51,37 +53,42 @@ router.get('/:id', convertToNumber, async (req, res) => {
   }
 )
 
+router.get("/loadProducts", async (req, res) => {
+  res.status(404).send({status:"Failed", msg: "No GET function, try POST"})
+})
+
 router.post("/loadProducts", async (req, res) => {
 try {
   let listProducts = await pm1.loadProducts() 
   console.log('Loading products: ', listProducts)
 
-  const response = listProducts.map(({ id, title, description, price, thumbnail, stock, available, category }) => ({
+  const response = listProducts.map(({ id, title, description, price, thumbnail, stock, available, category, pcode }) => ({
     title,
     description,
     price,
     thumbnail,
     stock,
     available,
-    category
+    category,
+    pcode
   }))
   console.log(response)
   await productModel.insertMany(response)
 } catch(error) {
-  console.log(error)
+    console.log(error)
 }
 });
 
 router.post("/", async (req, res) => {
-  const {title,description,price} = req.body;
+  const {title,description,price,pcode} = req.body;
   
-  if(!title||!description||!price) return res.status(400).send({status:"error",error:"Incomplete values"})
+  if(!title||!description||!price||!pcode) return res.status(400).send({status:"error", error:"Incomplete values"})
  
-  const product = new productModel({title,description,price});
+  const product = new productModel({title,description,price,pcode});
   
   const result = await pm1.saveProduct(product);
   
-  res.status(201).send({status:"success", payload:result})
+  res.status(200).send({status:"success", payload:result})
 
 
   // const product = req.query;
@@ -119,24 +126,29 @@ router.post("/", async (req, res) => {
   // }
 })
 
-router.delete("/:id", async(req,res) => {
+router.delete("/:id", authToken, async(req,res) => {
   
   if(req.user.role !== "admin") return res.status(403).json({ status: 404, ok: false, response: "Can't delete diff role." });
 
   try{
     const response = await pm1.deleteProduct(req.params.id)
-  } catch{
     res.status(200).json({ status: 200, ok: true, response });
+  } catch{
+    throw error;
   }
 
 })
 
-router.delete("/", async (req,res) => {
+router.delete("/", authToken, async (req,res) => {
+  
   if(req.user.role !== "admin") return res.status(403).json({ status: 404, ok: false, response: "Can't delete diff role." });
   try {
     const response = await pm1.deleteAll()
-  }catch{
     res.status(200).json({ status: 200, ok: true, response });
+  }catch{
+    throw error;
   }
+
 })
+
 module.exports = router

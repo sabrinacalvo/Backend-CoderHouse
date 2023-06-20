@@ -58,7 +58,7 @@ class ProductManager {
           fs.writeFileSync(productFile, objects);
           return "Product added";
         }
-      };
+    }
     
 }
 

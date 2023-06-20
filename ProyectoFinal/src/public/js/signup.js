@@ -9,7 +9,7 @@ form.addEventListener('submit', e => {
   data.forEach((value, key) => obj[key] = value)
 
   
-   const url = '/users'
+   const url = '/api/users/register'
    const headers = {
      'Content-Type': 'application/json'
     }

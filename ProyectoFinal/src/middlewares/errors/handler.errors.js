@@ -1,6 +1,6 @@
 const EnumError = require('../../utils/errors/enums.error')
 
-module.exports = (error, req, res, next) => {
+const errorHandler = (error, req, res, next) => {
   console.log(error.cause)
 
   switch (error.code) {
@@ -12,3 +12,5 @@ module.exports = (error, req, res, next) => {
       res.json({ error: 'Unhandled error' })
   }
 }
+
+module.exports = errorHandler

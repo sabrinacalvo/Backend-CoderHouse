@@ -1,79 +1,28 @@
 const { Router } = require('express')
 const config = require('../config')
 const passport = require('passport')
-const User = require('../dao/models/user.model')
-const { isValidPassword, createHash } = require('../utils/cryptPassword')
+// const User = require('../dao/models/user.model')
 const { generateToken, authToken, isValidToken } = require('../utils/jwt.utils')
 const sendMail = require("../utils/email");
+const AuthDb = require('../dao/dbManagers/auth.dbManager')
 
 const {port} = config.app
-
 const router = Router()
-
-router.get('/', async (req, res) => {
-  console.log('Auth')
-  res.json({ message: 'auth' })
-}
-
-)
-
-router.post(
-  '/',
-  passport.authenticate('login', { failureRedirect: '/failLogin' }),
-   async (req, res) => {
-    console.log(req.body)
-   try {
-      if (!req.user)
-        return res.status(400).json({ error: 'Credenciales invalidas' });
-
-      req.session.user = {
-        first_name: req.user.first_name,
-        last_name: req.user.last_name,
-        age: req.user.age,
-        email: req.user.email,
-      }
-
-      res.json({ message: req.user });
-
-     // Login autenticación
-
-    //  const adminEmail = 'adminCoder@coder.com';
-    //  let role = 'usuario'
-    //  const { email, password } = req.body
-
-    //  const user = await User.findOne({ email })
-         
-
-    //  if (!user) 
-    //   return res
-    //      .status(400)
-    //      .json({ error: 'El usuario y la contraseña no coinciden' })
-      
-    //  const ValidatePassword = isValidPassword(user, password)
-    //  if (!ValidatePassword)
-    //   return res.status(400)
-    //      .json({ error: 'El usuario y la contraseña no coinciden' })
-     
-    //  if(email === adminEmail) role = 'administrador';
-     
-
-    //  req.session.user = {
-    //    first_name: user.first_name,
-    //    last_name: user.last_name,
-    //    email: user.email,
-    //    role
-       
-    //  }
+const Auth = new AuthDb();
 
 
-    // const token = generateToken(email)
+router.post('/login', async (req, res, next) => {
+  try{
+    const response = await Auth.login(req.body);
 
-    //res.json({ message: 'Sesión Iniciada' })
+    if (response.status == 'failed') res.status(400).json({status: response.status, message: response.message})
     
-   } catch (error) {
-     res.status(500).json({ error: 'Internal Server Error' })
-   }
- })
+    res.cookie('token', response.payload, {maxAge: 1800000, httpOnly: true}).json({status: 200, message: response.message});
+    
+  }catch(error){
+    res.status(403).json({status: 'error', error: 'Forbidden / Invalid login'});
+  }
+})
 
  router.get('/failLogin', (req, res) => {
   res.send({error: 'Failed Login'})
@@ -112,18 +61,6 @@ router.get('/google/callback',
 })
 
 router.get('/github', passport.authenticate('github'))
-
-
-// router.patch('/forgotPassword', async (req, res) => {
-//   try {
-//     const { email, password } = req.body;
-
-//     const passwordEncrypted = createHash(password);
-//     await User.updateOne({ email }, { password: passwordEncrypted });
-
-//     res.json({ message: 'Contraseña actualizada' });
-//   } catch (error) {}
-// });
 
 
 router.post('/restorePassword', async (req, res, next) => {

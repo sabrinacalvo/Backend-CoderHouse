@@ -4,20 +4,22 @@
       "title": "Funko Pop! J-Hope Dynamite", 
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_911678-MLA47757680077_102021-F.webp", 
       "description": "J-HOPE #221 FUNKO POP! BTS DYNAMITE IMPORTADO",
-      "price": "ARS 8,499",
+      "price": 8499,
       "stock": 100,
       "available": true,
-      "category": "funko"
+      "category": "funko",
+      "pcode": "prdW07"
     },
     {
       "id": 2,
       "title": " Funko Pop! Suga Dynamite", 
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_661322-MLA50685347739_072022-F.webp", 
       "description": "J-HOPE #220 FUNKO POP! BTS DYNAMITE IMPORTADO",
-      "price": "ARS 8,999",
+      "price": 8999,
       "stock": 100,
       "available": true,
-      "category": "funko"
+      "category": "funko",
+      "pcode": "prd5245"
       
     },
     {
@@ -25,10 +27,11 @@
       "title": "Funko Pop! Jin  Bts Dynamite", 
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_677313-MLA47757657219_102021-F.webp", 
       "description": "FUNKO POP! #219 BTS DYNAMITE",
-      "price": "ARS 7,999",
+      "price": 7999,
       "stock": 100,
       "available": true,
-      "category": "funko"
+      "category": "funko",
+      "pcode": "prdN854"
       
     },
     {
@@ -36,362 +39,363 @@
       "title": "Funko Pop Bts Dynamite Rm", 
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_866605-MLA49326715101_032022-F.webp", 
       "description": "Funko Pop #218 Bts Dynamite Rm",
-      "price": "ARS 9,895",
+      "price": 9895,
       "stock": 100,
       "available": true,
-      "category": "funko"
-      
+      "category": "funko",
+      "pcode": "prdX775"
     },
     {
       "id": 5,
       "title": "Funko Pop Bts  Dynamite  Jimin ", 
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_693536-MLA49706545942_042022-F.webp", 
       "description": "Funko Pop Bts #222 Dynamite - Jimin ",
-      "price": "ARS 7,990",
+      "price": 7990,
       "stock": 100,
       "available": true,
-      "category": "funko"
-      
+      "category": "funko",
+      "pcode": "prd4465"      
     },
     {
       "id": 6,
       "title": "Funko Pop Rocks Bts Dynamite Jungkook", 
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_630027-MLA47155073804_082021-F.webp", 
       "description": "Funko Pop Rocks #224 Bts Dynamite Jungkook",
-      "price": "ARS 11,600",
+      "price": 11600,
       "stock": 100,
       "available": true,
-      "category": "funko"
-      
+      "category": "funko",
+      "pcode": "prdT679"
     },
     {
       "id": 7,
       "title": "Funko Pop Rocks Bts Dynamite V", 
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_676610-MLA47024919225_082021-F.webp", 
       "description": "Funko Pop #223 Bts Dynamite V",
-      "price": "ARS 13,700",
+      "price": 13700,
       "stock": 100,
       "available": true,
-      "category": "funko"
-      
+      "category": "funko",
+      "pcode":"prd5839"      
     },
     {
       "id": 8,
       "title": "Funko Pop Rocks Bts V 107", 
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_639624-MLA51602685146_092022-F.webp", 
       "description": "Funko Pop #107 Bts V 107",
-      "price": "ARS 9,999",
+      "price": 9999,
       "stock": 100,
       "available": true,
-      "category": "funko"
-      
+      "category": "funko",
+      "pcode": "prdC336"
     },
     {
       "id": 9,
       "title": "Funko pop Bts Butter V", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_753629-MLA52139901198_102022-F.webp", 
       "description": "Funko pop Bts #284 Butter V",
-      "price": "ARS 7,900",
+      "price": 7900,
       "stock": 100,
       "available": true,
-      "category": "funko"
-     
+      "category": "funko",
+      "pcode": "prdA536"     
     },
     {
       "id": 10,
       "title": "Funko Pop Rocks Bts Butter Jung Kook", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_773379-MLA52166144215_102022-F.webp", 
       "description": "Funko Pop Rocks Bts # 285Butter Jung Kook",
-      "price": "ARS 11,600",
+      "price": 11600,
       "stock": 100,
       "available": true,
-      "category": "funko"
-      
+      "category": "funko",
+      "pcode":"prdN525"      
     },
     {
       "id": 11,
       "title": "Remeras Adulto Bts K-pop 100% Algodón", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_813366-MLA48914512261_012022-F.webp", 
       "description": "Remeras Adulto Bts K-pop 100% Algodón",
-      "price": "ARS 3149",
+      "price": 3149,
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-     
+      "category": "t-shirt",
+      "pcode": "prdW527"     
     },
     {
       "id": 12,
       "title": "Remeras Adulto Bts K-pop 100% Algodón", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_968492-MLA51714781319_092022-F.webp", 
       "description": "Remeras Adulto Bts K-pop 100% Algodón",
-      "price": "ARS 3149",
+      "price": 3149,
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode": "prdN343"      
     },
     {
       "id": 13,
       "title": "Remeras Adulto Bts K-pop 100% Algodón", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_723378-MLA51714815134_092022-F.webp", 
       "description": "Remeras Adulto Bts K-pop 100% Algodón",
-      "price": "ARS 3149",
+      "price": 3149,
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode": "prdY798"      
     },
     {
       "id": 14,
       "title": " Remeras Adulto Bts K-pop 100% Algodón", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_801070-MLA51714746570_092022-F.webp", 
       "description": "Remeras Adulto Bts K-pop 100% Algodón",
-      "price": "ARS 3149",
+      "price": 3149,
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode": "prdT472"      
     },
     {
       "id": 15,
       "title": "Remeras Adulto Bts K-pop 100% Algodón", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_944792-MLA51714830044_092022-F.webp", 
       "description": "Remeras Adulto Bts K-pop 100% Algodón",
-      "price": "ARS 3149",
+      "price": 3159,
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-     
+      "category": "t-shirt",
+      "pcode": "prdR776"     
     },
     {
       "id": 16,
       "title": " Remeras Adulto Bts K-pop 100% Algodón", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_733692-MLA51714713655_092022-F.webp", 
       "description": "Remeras Adulto Bts K-pop 100% Algodón",
-      "price": "ARS 3149",
+      "price": 1490,
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode": "prdA663"      
     },
     {
       "id": 17,
       "title": "Remeras Adulto Bts K-pop 100% Algodón", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_913262-MLA51714765411_092022-F.webp", 
       "description": "Remeras Adulto Bts K-pop 100% Algodón",
-      "price": "ARS 2500",
+      "price": 2500,
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode":"prdW333"      
     },
     {
       "id": 18,
       "title": "Remeras Adulto Bts K-pop 100% Algodón ", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_648960-MLA51714834022_092022-F.webp", 
       "description": "Remeras Adulto Bts K-pop 100% Algodón",
-      "price": "ARS 2800",
+      "price": 2800,
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode": "prdM345"      
     },
     {
       "id": 19,
       "title": "Remeras Adulto Bts K-pop 100% Algodón", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_842859-MLA51714762440_092022-F.webp", 
       "description": "Remeras Adulto Bts K-pop 100% Algodón",
-      "price": "ARS 1790",
+      "price": 1790,
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode": "prdE899"      
     },
     {
       "id": 20,
       "title": "Remeras Adulto Bts K-pop 100% Algodón", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_885568-MLA51714697753_092022-F.webp", 
       "description": "Remeras Adulto Bts K-pop 100% Algodón",
-      "price": "ARS 2,752",
+      "price": 2752,
       "stock": 100,
       "available": true,
-      "category": "t-shirt"
-      
+      "category": "t-shirt",
+      "pcode": "prdG527"      
     },
     {
       "id": 21,
       "title": "Taza Mágica Bts", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_757273-MLA49879607560_052022-F.webp", 
       "description": "Taza Mágica Bts 320 ml de porcelana",
-      "price": "ARS 1,800",
+      "price": 1800,
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdT478"      
     },
     {
       "id": 22,
       "title": " Taza Mágica - Bts Butter", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_884631-MLA49879684656_052022-F.webp", 
       "description": "Taza Mágica - Bts Butter 320 mL",
-      "price": "ARS 1,800",
+      "price": 1800,
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdB472"      
     },
     {
       "id": 23,
       "title": "Taza Mágica - Bts Integrantes", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_655989-MLA49879587592_052022-F.webp", 
       "description": "Taza Mágica - Bts Integrantes",
-      "price": "ARS 1,800",
+      "price": 1800,
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdS534"      
     },
     {
       "id": 24,
       "title": " Taza Mágica - Bts Army", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_858464-MLA49879563959_052022-F.webp", 
       "description": "Taza Mágica - Bts Army",
-      "price": "ARS 1,800",
+      "price": 1800,
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdE572"      
     },
     {
       "id": 25,
       "title": "Taza Mágica - Bts Army", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_732408-MLA49879568968_052022-F.webp", 
       "description": "Taza Mágica - Bts Army ",
-      "price": "ARS 1,800",
+      "price": 1800,
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdC487"      
     },
     {
       "id": 26,
       "title": "Taza Mágica - Bts Army", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_764206-MLA49879683515_052022-F.webp", 
       "description": "Taza Mágica - Bts Army ",
-      "price": "ARS 1,800",
+      "price": 1800,
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prd7446"      
     },
     {
       "id": 27,
       "title": "Taza Mágica Termosensible Bts", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_986103-MLA48196976292_112021-F.webp", 
       "description": "Taza Mágica Termosensible",
-      "price": "ARS 1,775",
+      "price": 1775,
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdJ965"      
     },
     {
       "id": 28,
       "title": "Taza De Cerámica - Bts Caricaturas ", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_857762-MLA48405397737_122021-F.webp", 
       "description": "Taza De Cerámica - Bts Caricaturas ",
-      "price": "ARS 1,800",
+      "price": 1800,
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prd4966"      
     },
     {
       "id": 29,
       "title": "Taza De Cerámica - Bts Caricaturas ", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_893711-MLA43262201916_082020-F.webp", 
       "description": "Taza De Cerámica - Bts Caricaturas",
-      "price": "ARS 1,699",
+      "price": 1699,
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdE992"      
     },
     {
       "id": 30,
       "title": "Taza De Cerámica - Bts Caricaturas", 
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_700360-MLA43262209741_082020-F.webp", 
       "description": "Taza De Cerámica - Bts Caricaturas",
-      "price": "ARS 548",
+      "price": 548,
       "stock": 100,
       "available": true,
-      "category": "cup"
-      
+      "category": "cup",
+      "pcode": "prdF763"      
     },
     {
       "id": 31,
       "title": "Bts Proof (compact Edition) 3 Cd Book Poster Photos Postcard", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_620328-MLA49900342593_052022-F.webp",
       "description": "Bts Proof (compact Edition) 3 Cd Book Poster Photos Postcard",
-      "price": "ARS 8,294",
+      "price": 8294,
       "stock": 2,
       "available": true,
-      "category": "cd"      
+      "category": "cd",
+      "pcode": "prdY488"      
     },
       {
       "id": 32,
       "title": "Bts Proof (standard Edition) 3cd Book Poster Photos Postcard", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_983473-MLA49900549329_052022-F.webp",
       "description": "Bts Proof (standard Edition) 3cd Book Poster Photos Postcard.",
-      "price": "ARS 29,163",
+      "price": 29163,
       "stock": 1,
       "available": true,
-      "category": "cd"  
-      
+      "category": "cd",
+      "pcode": "prdA925"      
     },
     {
       "id": 33,
       "title": "Skool Luv Affair (special Addition 2dvd + Book) - Bts (cd)", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_982104-MLA48769312090_012022-F.webp",
       "description": "Skool Luv Affair (special Addition 2dvd + Book) - Bts (cd)",
-      "price": "ARS 24.080",
+      "price": 24080,
       "stock": 100,
       "available": true,
-      "category": "cd"  
-      
+      "category": "cd",
+      "pcode": "prd9349"      
     },
     {
       "id": 34,
       "title": "Bts - Butter (2 Cds Cream & Peaches Version) - Importado", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_986122-MLA46477426606_062021-F.webp",
       "description": "Bts - Butter (2 Cds Cream & Peaches Version) - Importado",
-      "price": "ARS 20,474",
+      "price": 20474,
       "stock": 100,
       "available": true,
-      "category": "cd"  
-      
+      "category": "cd",
+      "pcode": "prd7527"      
     },
     {
       "id": 35,
       "title": "Bts Memories Of 2020 7 Dvd Boxset + Photo Book Asia Import", 
       "thumbnail":  "https://http2.mlstatic.com/D_NQ_NP_2X_645483-MLA47880381467_102021-F.webp",
       "description": "Bts Memories Of 2020 7 Dvd Boxset + Photo Book Asia Import",
-      "price": "ARS 71,871",
+      "price": 71871,
       "stock": 100,
       "available": true,
-      "category": "cd"  
-      
+      "category": "cd",
+      "pcode": "prdA633"     
     },
     {
       "id": 36,
       "title": "The Big Book Of Bts : The Deluxe Unofficial Bangtan Book ...", 
       "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_817524-MLA42110402064_062020-F.webp",
       "description": "The Big Book Of Bts : The Deluxe Unofficial Bangtan Book ...",
-      "price": "ARS 15,296",
+      "price": 14296,
       "stock": 100,
       "available": true,
-      "category": "cd" 
-     
+      "category": "cd",
+      "pcode": "prdN655"     
     }
   
   ]

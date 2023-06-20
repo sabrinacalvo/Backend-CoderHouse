@@ -7,9 +7,9 @@ const ticketSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
-    purchase_datetime: String,
+    purchase_datetime: Date,
     total: Number,
-    owner: String
+    purchaser: String
 });
 
 const Ticket = mongoose.model(ticketCollection, ticketSchema);

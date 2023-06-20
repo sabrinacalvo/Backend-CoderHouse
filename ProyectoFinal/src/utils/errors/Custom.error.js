@@ -1,9 +1,10 @@
 class CustomError {
-    static createError({name = 'Error', cause, message, code = 1}) {
+
+  constructor({name = 'Error', cause, message, code}) {
       const error = new Error(message);
-      error.cause = cause;
+      error.cause = cause || 'Unkown cause issue';
       error.name = name;
-      error.code = code;
+      error.code = code || 500;
   
       throw error;
     }

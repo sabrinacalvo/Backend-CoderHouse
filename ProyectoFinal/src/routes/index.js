@@ -12,17 +12,16 @@ const sessionsController = require('../controllers/controller.sessions')
 
 const routes = (app) => {
   app.use('/', viewsController)
-  app.use('/api/cart', cart)
-  app.use('/api/products', products)
-  app.use('/api/messages', messages)
-  app.use('/api/orders', orders)
-  app.use('/api/tickets', tickets) 
   app.use('/',viewsTemplateController)
-  app.use('/users', usersController)
   app.use('/auth', authController)
-  app.use('/mockingproducts', mocking )
+  app.use('/api/cart', cart)
+  app.use('/api/messages', messages)
   app.use('/api/sessions', sessionsController)
-    
+  app.use('/api/orders', orders)
+  app.use('/api/products', products)
+  app.use('/api/users', usersController) 
+  app.use('/api/tickets', tickets) 
+  app.use('/mockingproducts', mocking )    
 }
 
 

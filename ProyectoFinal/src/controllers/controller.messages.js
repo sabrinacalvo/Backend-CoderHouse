@@ -6,7 +6,7 @@ const msg = new Message();
 
 router.get("/", (req, res) => {
   let result = msg.getAll();
-  res.send({ status: "Ok", payload: result });
+  res.send({ status: "sucess", ok: true, payload: result });
 });
 
 router.post("/", async (req, res) => {
@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
     message,
   };
   let result = await msg.addMessage(fullMessage);
-  res.send({ status: "Ok", payload: result });
+  res.send({ status: "sucess", ok: true, payload: result });
 });
 
 module.exports = router;

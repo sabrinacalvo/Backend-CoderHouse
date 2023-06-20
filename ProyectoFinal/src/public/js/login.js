@@ -13,7 +13,7 @@ form.addEventListener('submit', e => {
   
   console.log(obj)
 
-   const url = '/auth'
+   const url = '/auth/login'
    const headers = {
      'Content-Type': 'application/json'
    }

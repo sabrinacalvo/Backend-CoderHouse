@@ -12,6 +12,7 @@ const config = {
         port: process.env.PORT || 8080,
         persistence: process.env.PERSISTENCE,
         environment: process.env.NODE_ENV || 'development',
+        jwt_secret_key: 'coderSecret'
     },
     db: {
         userDB: process.env.USER_DB,

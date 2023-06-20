@@ -11,7 +11,7 @@ router.get('/', async (req,res) => {
         const tickets = await tm1.getTickets();
         console.log(tickets)
          if(tickets === []) 
-             res.json({ status: 'error', message: 'Non Tickets not found' });
+             res.json({ status: 'failed', message: 'Non Tickets not found' });
          else 
              res.json({ status: 'success', message: tickets })
     } catch(error) {

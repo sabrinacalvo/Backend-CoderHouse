@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 const config  = require("../config/index");
 
 const email = config.email
-console.log(email)
+console.log("==Email Service==: ", email.EMAIL_SERVICE)
 
 const transporter = nodemailer.createTransport({
     service: email.EMAIL_SERVICE,

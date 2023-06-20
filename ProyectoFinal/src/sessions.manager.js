@@ -20,7 +20,7 @@ const registerUser = async(req,res) =>{
         password: hashedPassword
     }
     await usersModel.create(user);
-    res.send({status:"success",message:"Registered"})
+    res.send({status:"sucess",message:"Registered"})
 }
 
 const loginUser = async(req,res) =>{

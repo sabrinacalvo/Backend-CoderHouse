@@ -7,7 +7,7 @@ const logger = winston.createLogger({
       new winston.transports.Console({
          level: 'info',
          format: winston.format.combine(
-          winston.format.colorize({colors: CustomLevelsOptions.colors}),
+          // winston.format.colorize({colors: CustomLevelsOptions.colors}),
           winston.format.simple()
           )
        

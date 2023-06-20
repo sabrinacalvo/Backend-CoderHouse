@@ -1,6 +1,6 @@
 const Users = require("../models/user.model.js");
-
-
+const UserDTO = require("../../DTOs/User.dto");
+const CustomError = require('../../utils/errors/Custom.error')
 
 class UserManager {
     constructor(){
@@ -51,7 +51,7 @@ class UserManager {
         if(!user) throw new CustomError({ status: 404, ok: false, response: "User not found in DB." });
         const update = {...user._doc, role: user._doc.role === "user" ? "premium" : "user" };
         await Users.updateOne({ _id: id }, update);
-        return update;
+        return update;
     }
 
     getBy = (params) =>{
@@ -68,6 +68,10 @@ class UserManager {
 
     delete = (id) =>{
         return Users.findByIdAndDelete(id);
+    }
+
+    deleteAll = () => {
+        return Users.deleteMany()
     }
 };
 

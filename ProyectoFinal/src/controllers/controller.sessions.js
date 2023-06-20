@@ -11,11 +11,11 @@ router.post('/login', async (req, res) => {
   
   })
 
-  router.post('/register', async (req, res) => {
-    registerUser(req, res)
+router.post('/register', async (req, res) => {
+  registerUser(req, res)
 
-    res.send({ status: 'success', message: 'Registered'})
-  
-  })
+  res.send({ status: 'success', message: 'Registered'})
+
+})
 
 module.exports = router;
