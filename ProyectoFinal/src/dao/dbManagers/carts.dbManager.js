@@ -22,7 +22,7 @@ class CartDbManager {
 
   getProducts = async () => {
   try {
-    let response = await cartModel.products
+    let response = await cartModel.Products
     return response
   } catch(error) {
     console.log(error)
@@ -55,20 +55,24 @@ class CartDbManager {
   try{   
     const cart = await cartModel.findOne({ _id: cid });
     if (!cart) return {status: 'failed', message: 'Cart does not exist' };
-    const product = await productModel.findOne({ _id: productId })
-    if (!product) return {status: 'failed', message: 'Product id does not exist' };
+    const productToAdd = await productModel.findOne({ _id: productId })
+    if (!productToAdd) return {status: 'failed', message: 'Product id does not exist' };
 
-    console.log("ID del producto", product)
-
-    let prodInCart = cart.products.findIndex(prod => prod.product.equals(pid));
+    let isProdInCart = cart.Products.findIndex(prod => prod.product.equals(productId));
    
-    console.log("EN CARRITO",prodInCart)
-    if(prodInCart >= 0 )
-      cartModel.products.find(product => product.product._id === productId) && product.quantity++;
-    else 
-      cartModel.products.push({ product: product.id, quantity: 1 });
+    if (!cart.Products) {
+      cart.Products = [];
+    }
 
-    await cart.updateOne({ _id: cid }, cart);
+    // ProdInCart = -1 if not product present.
+    if(isProdInCart >= 0 ) {
+      cart.Products[isProdInCart].quantity++;
+      console.log("Product exists, adding to stock") }
+    else 
+      cart.Products.push({ product: productToAdd.id, quantity: 1 });
+
+    await cartModel.updateOne({ _id: cid }, cart);
+
     return { status: 'success', ok: true, message: 'Product was added to cart'}
   } catch (error) {
     console.log(error);
@@ -79,13 +83,13 @@ class CartDbManager {
     try {
         const cart = await cartModel.getById(cid);
         if (!cart) return {status: 'failed', message: 'Invalid CartID'};
-        if(cart.products.length === 0) return {status: 'failed', message: 'None products to delete found'};
+        if(cart.Products.length === 0) return {status: 'failed', message: 'None products to delete found'};
 
         const productIndex = await cartModel.getProductIndex(pid, cart);
-        if(prodIndex === -1) return {status: 'failed', message: 'El producto no se encontró en el carrito'};
+        if(productIndex === -1) return {status: 'failed', message: 'El producto no se encontró en el carrito'};
 
-        cart.products.splice(prodIndex, 1);
-        await cm.update(cid, cart);
+        cart.products.splice(productIndex, 1);
+        await cartModel.updateOne(cid, cart);
         return {status: 'success', message: 'Producto eliminado del carrito'};
     } catch (error) {
         throw error;
@@ -131,10 +135,10 @@ class CartDbManager {
   purchase = async (cid, user) => {
     try {
           const cart = await cartModel.findOne({ _id: cid });
-
+          console.log(cart)
           if (!cart) return {status: 'failed', message: 'Cart ID not exist'};
-          const products = cart.products;
-          if (!products) return {status: 'failed', message: 'No products to add'};
+          const products = cart.Products;
+          if (products.length == 0) return {status: 'failed', message: 'No products to add'};
 
           let purchasedProducts = [];
 
@@ -143,17 +147,20 @@ class CartDbManager {
               let price = prod.product.price;
               let quantity = prod.quantity;
 
-              let product = await productModel.getById(id);
-            
-              if (quantity <= product.stock) {
+              let product = await productModel.find(prod.product);
+
+              if (quantity <= product[0].stock) {
+                
                 try {
-                  await productModel.update(id, {stock: product.stock - quantity});
+                  product[0].stock= product[0].stock - quantity
+                  await productModel.updateOne(prod.id, product);
                   const subtotal = price * quantity;
                   const item = {
                       product: id,
                       subtotal
                   };
                   purchasedProducts.push(item);
+                  console.log("Item added", item)
                   const prodIndex = await cartModel.getProductIndex(id, cart);
                   console.log("INDEX: ", prodIndex)
 

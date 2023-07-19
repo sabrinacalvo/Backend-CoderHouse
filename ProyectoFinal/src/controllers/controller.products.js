@@ -45,7 +45,7 @@ const convertToNumber = (req, res, next) => {
   next()
 }
 // Get product with id
-router.get('/:id', convertToNumber, async (req, res) => {
+router.get('/:id', async (req, res) => {
   let id = req.params.id;
   let product = await pm1.getProductById(id);
 
@@ -80,50 +80,16 @@ try {
 });
 
 router.post("/", async (req, res) => {
-  const {title,description,price,pcode} = req.body;
+  const {title,description,price,pcode,stock} = req.body;
   
-  if(!title||!description||!price||!pcode) return res.status(400).send({status:"error", error:"Incomplete values"})
+  if(!title||!description||!price||!pcode||!stock) return res.status(400).send({status:"error", error:"Incomplete values"})
  
-  const product = new productModel({title,description,price,pcode});
+  const product = new productModel({title,description,price,pcode,stock});
   
   const result = await pm1.saveProduct(product);
   
   res.status(200).send({status:"success", payload:result})
 
-
-  // const product = req.query;
-  // console.log(product)
-  // if (
-  //   !product.title 
-  //   // !product.description ||
-  //   // !product.price ||
-  //   // !product.stock ||
-  //   // !product.category
-  // ) {
-  //   res.send({ status: 404, message: "Fill all params" });
-  // } else {
-  //   if (!product.status) {
-  //     product.status = true;
-  //   } else {
-  //     product.status = product.status === "true";
-  //   }
-  //   if (!product.thumbnails) {
-  //     product.thumbnails = [];
-  //   } else {
-  //     product.thumbnails = [product.thumbnails];
-  //   }
-  //   product.price = parseInt(product.price);
-  //   product.stock = parseInt(product.stock);
-  //   if (isNaN(product.price) || isNaN(product.stock)) {
-  //     res.send({ status: 404, message: "Price and stock need to be numbers" });
-  //   } else {
-  //     let response = await pm.addProduct(product);
-  //     res.send({ status: 200, message: response });
-  //     let products = await pm.getProducts();
-  //     io.emit("products", products);
-  //     console.log(response);
-  //   }
-  // }
 })
 
 router.delete("/:id", authToken, async(req,res) => {

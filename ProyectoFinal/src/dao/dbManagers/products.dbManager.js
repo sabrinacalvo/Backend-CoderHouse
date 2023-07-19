@@ -1,7 +1,7 @@
-const productsModel = require('../models/products.model');
+const productModel = require('../models/products.model');
 const fs = require('fs');
-const config = require('../../config/index')
-
+const config = require('../../config/index');
+const productsDTO = require('../../DTOs/Product.dto')
 const {port} = config.app || 8080
 
 class ProductDbManager {
@@ -27,7 +27,7 @@ class ProductDbManager {
 
   getProductsOld = async () => {
   try {
-    const products = await productsModel.find();
+    const products = await productModel.find();
     return products.map((product) => product.toObject());
   }catch (error) {
     console.log(error);
@@ -45,7 +45,7 @@ class ProductDbManager {
     }
 
     try {
-        const data = await productsModel.paginate(filter, options);
+        const data = await productModel.paginate(filter, options);
         const response = {
             status: "success",
             payload: data,
@@ -66,7 +66,7 @@ class ProductDbManager {
 
   getProductById = async (id) => {
   try {  
-    let product = await productsModel.findOne({ _id: id });
+    let product = await productModel.findOne({ _id: id });
     return product;
   } catch (error) {
     console.log(error);
@@ -77,10 +77,10 @@ class ProductDbManager {
   addProduct = async (productInfo) => {
     try {
       const { pcode } = productInfo;
-      const productByCode = await pm1.getByQuery({pcode: pcode});
-      if(Object.keys(productByCode).length !== 0) return {status: 'failed', message: 'Product already exists'};
+      const productByCode = await productModel.findOne({pcode: pcode});
+      if (productByCode) return {status: 'failed', message: 'Product already exists'};
 
-      const added = await pm1.add(productInfo);
+      const added = await productModel.create(productInfo);
       const newProduct = new productsDTO(added);
 
       return {message: 'Product added', payload: newProduct};
@@ -92,21 +92,25 @@ class ProductDbManager {
   saveProduct = async (product) => {
   try{
     const { pcode } = product;
-    const productByCode = await productsModel.findOne({pcode: pcode});
+    const productByCode = await productModel.findOne({pcode: pcode});
 
-    if(Object.keys(productByCode).length !== 0) return {status: 'failed', message: 'Product exists!'};
-    
-    let result = await productsModel.add(product);
-
-    return {status: 'success', message: 'Product added', payload: result};
-
+    if (productByCode) {
+      productByCode.stock = productByCode.stock + 1;
+      this.updateProduct(productByCode.id, productByCode)
+      return {status: 'Success', message: 'Product exists, added to stock'};
+    }
+    else {
+      let result = await productModel.create(product);
+      const newProduct = new productsDTO(result);
+      return {status: 'success', message: 'Product added', payload: newProduct};
+    }
   } catch (error) {
       throw error;
   }};
 
   updateProduct = async (id, product) => {
   try{
-    let result = await productsModel.updateOne({ _id: id }, product);
+    let result = await productModel.updateOne({ _id: id }, product);
     return {status: 'success', message: 'Product updated'}
   }catch (error) {
     console.log(error);
@@ -115,7 +119,7 @@ class ProductDbManager {
 
   deleteProduct = async (id) => {
   try{
-    let result = await productsModel.deleteOne({ _id: id });
+    let result = await productModel.deleteOne({ _id: id });
     return result;
   } catch (error) {
       console.log(error);
@@ -124,7 +128,7 @@ class ProductDbManager {
 
   deleteAll = async () => {
   try{
-    let result = await productsModel.deleteMany();
+    let result = await productModel.deleteMany();
     return result;
   } catch (error) {
     console.log(error);
